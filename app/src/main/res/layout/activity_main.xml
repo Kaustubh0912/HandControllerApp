@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#102a43">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Prosthetic Arm Status"
+        android:textSize="24sp"
+        android:textColor="#bcccdc"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Graph for Sensor 1 -->
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphSensor1"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:background="#bcccdc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sensor 1"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
+        android:textColor="#486581" />
+
+    <!-- Graph for Sensor 2 -->
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/graphSensor2"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="16dp"
+        android:background="#bcccdc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sensor 2"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:textColor="#486581" />
+
+    <Button
+        android:id="@+id/btnConnect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect to Bluetooth"
+        android:backgroundTint="#486581"
+        android:textColor="#FFFFFF"
+        android:layout_gravity="center" />
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
+        app:menu="@menu/bottom_navigation_menu" />
+
+</LinearLayout>
