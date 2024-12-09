@@ -5,7 +5,10 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +30,7 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -59,11 +63,15 @@ public class MainActivity extends AppCompatActivity {
             }
     );
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Set content view first, then apply language
         setContentView(R.layout.activity_main);
 
+        // Initialize views and setup
         initializeGraphs();
         setupConnectButton();
         setupBottomNavigation();
@@ -92,6 +100,13 @@ public class MainActivity extends AppCompatActivity {
         checkAndRequestPermissions();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Apply saved language when activity resumes
+        applySavedLanguage();
+    }
+
     private void initializeGraphs() {
         graphSensor1 = findViewById(R.id.graphSensor1);
         graphSensor2 = findViewById(R.id.graphSensor2);
@@ -116,26 +131,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.home:
-                    // Show the home page (graphs)
-                    // You could use a fragment to replace the view dynamically
-                    return true;
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
 
-                case R.id.settings:
-                    // Navigate to SettingsActivity
-                    startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-                    return true;
-
-                default:
-                    return false;
+            if (itemId == R.id.home) {
+                // Stay on the home page (no action needed)
+                return true;
+            } else if (itemId == R.id.settings) {
+                // Navigate to SettingsActivity
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                return true;
+            } else {
+                return false; // If no valid option is selected
             }
         });
     }
 
-
-private void attemptBluetoothConnection() {
+    private void attemptBluetoothConnection() {
         // Check if Bluetooth is enabled
         if (!bluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -251,19 +263,14 @@ private void attemptBluetoothConnection() {
     }
 
     private void startBluetoothDataProcessing() {
-        // Implement actual Bluetooth data reading and graph updating
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(() -> {
             byte[] buffer = new byte[1024];
             int bytes;
 
-            while (true)
-            {
+            while (true) {
                 try {
                     if (inputStream != null && (bytes = inputStream.read(buffer)) != -1) {
-                        // Process incoming data
-                        // Parse sensor data and update graphs
-                        // Example placeholder
                         final double sensor1Value = parseFirstSensorValue(buffer, bytes);
                         final double sensor2Value = parseSecondSensorValue(buffer, bytes);
 
@@ -272,12 +279,8 @@ private void attemptBluetoothConnection() {
                             updateGraphSensor2(sensor2Value);
                         });
                     }
-                } catch (IOException e)
-                {
-                    mainHandler.post(() -> {
-                        Toast.makeText(this, "Data reading interrupted", Toast.LENGTH_SHORT).show();
-
-                    });
+                } catch (IOException e) {
+                    mainHandler.post(() -> Toast.makeText(this, "Data reading interrupted", Toast.LENGTH_SHORT).show());
                     break;
                 }
             }
@@ -285,12 +288,14 @@ private void attemptBluetoothConnection() {
     }
 
     private double parseFirstSensorValue(byte[] buffer, int bytes) {
-        // Implement actual parsing logic
+        // Implement actual parsing logic for sensor 1 value
+        // For now, simulate some data
         return Math.random() * 10;
     }
 
     private double parseSecondSensorValue(byte[] buffer, int bytes) {
-        // Implement actual parsing logic
+        // Implement actual parsing logic for sensor 2 value
+        // For now, simulate some data
         return Math.random() * 15;
     }
 
@@ -300,6 +305,17 @@ private void attemptBluetoothConnection() {
 
     private void updateGraphSensor2(double yValue) {
         seriesSensor2.appendData(new DataPoint(x2++, yValue), true, 50);
+    }
+
+    private void applySavedLanguage() {
+        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        String languageCode = preferences.getString("language", "en"); // Default to English
+        Locale locale = new Locale(languageCode);
+        Locale.setDefault(locale);
+        Resources resources = getResources();
+        Configuration config = resources.getConfiguration();
+        config.setLocale(locale);
+        resources.updateConfiguration(config, resources.getDisplayMetrics());
     }
 
     @Override
@@ -321,3 +337,4 @@ private void attemptBluetoothConnection() {
         mainHandler.removeCallbacks(graphUpdateRunnable);
     }
 }
+

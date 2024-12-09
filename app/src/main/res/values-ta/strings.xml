@@ -1,0 +1,23 @@
+<resources>
+    <string name="prosthetic_arm_status">பிரோஸ்தெட்டிக் கையின நிலை</string>
+    <string name="sensor_1">சென்சார் 1</string>
+    <string name="sensor_2">சென்சார் 2</string>
+    <string name="connect_to_bluetooth">ப்ளூடூத் இணைக்கவும்</string>
+    <string name="settings_and_calibration">அமைப்புகள் மற்றும் ஏற்றுமதி</string>
+    <string name="select_language">மொழி தேர்வு</string>
+    <string name="english">ஆங்கிலம்</string>
+    <string name="hindi">இந்தி</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="telugu">తెలుగు</string>
+    <string name="malayalam">മലയാളം</string>
+    <string name="home">முகப்பக்கம்</string>
+    <string name="settings">அமைப்புகள்</string>
+
+    <string-array name="language_options">
+        <item>ஆங்கிலம்</item>
+        <item>இந்தி</item>
+        <item>தமிழ்</item>
+        <item>తెలుగు</item>
+        <item>മലയാളം</item>
+    </string-array>
+</resources>
