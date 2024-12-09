@@ -12,6 +12,8 @@
     <string name="malayalam">മലയാളം</string>
     <string name="home">హోమ్</string>
     <string name="settings">సెట్టింగ్స్</string>
+    <string name="auto_calibrate">Auto Calibrate</string>
+    <string name="calibration_instructions">Follow these steps for calibration:\n1. Ensure the prosthetic arm is in a neutral position\n2. Press the calibrate button\n3. Wait for confirmation</string>
 
     <string-array name="language_options">
         <item>ఇంగ్లీష్</item>

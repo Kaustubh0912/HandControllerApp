@@ -11,12 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.Locale;
 
 public class SettingsActivity extends AppCompatActivity {
 
     private TextView selectLanguage;
+    private MaterialButton autoCalibrateButton;
+    private TextView calibrationInstructions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +32,20 @@ public class SettingsActivity extends AppCompatActivity {
 
         // Initialize views
         selectLanguage = findViewById(R.id.selectLanguage);
+        autoCalibrateButton = findViewById(R.id.autocalibrate);
+        calibrationInstructions = findViewById(R.id.calibrationInstructions);
 
         // Set click listener for language selection
         selectLanguage.setOnClickListener(v -> openLanguageMenu(v));
+
+        // Set click listener for calibration
+        autoCalibrateButton.setOnClickListener(v -> {
+            // Hide the button
+            autoCalibrateButton.setVisibility(View.GONE);
+
+            // Show the instructions
+            calibrationInstructions.setVisibility(View.VISIBLE);
+        });
 
         // Bottom navigation setup
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

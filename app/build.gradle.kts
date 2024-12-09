@@ -43,7 +43,8 @@ dependencies {
     implementation("androidx.core:core:1.13.0")
     implementation("androidx.activity:activity:1.8.2")
     implementation("com.google.android.material:material:1.11.0")
-
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation ("androidx.cardview:cardview:1.0.0")
     // Bluetooth and Graphs
     implementation("com.jjoe64:graphview:4.2.2")
 
