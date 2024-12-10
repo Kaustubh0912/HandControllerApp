@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Language"
+                android:text="@string/language"
                 android:textColor="#bcccdc"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Calibration"
+                android:text="@string/calibration"
                 android:textColor="#bcccdc"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"/>
@@ -82,7 +82,7 @@
                 android:id="@+id/autocalibrate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/auto_calibrate"
+                android:text="@string/calibrate"
                 android:textColor="#FFFFFF"
                 app:backgroundTint="#486581"
                 app:cornerRadius="8dp"/>
@@ -91,11 +91,17 @@
                 android:id="@+id/calibrationInstructions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/calibration_instructions"
                 android:textColor="#bcccdc"
                 android:visibility="gone"
                 android:textSize="16sp"
-                android:layout_marginTop="8dp"/>
+                android:layout_marginTop="8dp"
+                android:padding="12dp"
+                android:background="#2c4b6b"
+                android:elevation="2dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="calibration_instructions"
+                android:foreground="?attr/selectableItemBackground"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

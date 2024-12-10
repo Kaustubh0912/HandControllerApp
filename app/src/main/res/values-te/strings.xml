@@ -1,24 +1,25 @@
 <resources>
-    <string name="prosthetic_arm_status">ప్రోస్తెటిక్ చేతి స్థితి</string>
-    <string name="sensor_1">సెన్సార్ 1</string>
-    <string name="sensor_2">సెన్సార్ 2</string>
-    <string name="connect_to_bluetooth">బ్లూటూత్‌కి కనెక్ట్ అవ్వండి</string>
-    <string name="settings_and_calibration">సెట్టింగ్స్ మరియు కాలిబ్రేషన్</string>
-    <string name="select_language">భాషను ఎంచుకోండి</string>
-    <string name="english">ఇంగ్లీష్</string>
-    <string name="hindi">హిందీ</string>
-    <string name="tamil">తమిళం</string>
+    <string name="prosthetic_arm_status">പ്രോസ്തറ്റിക് കൈ നില</string>
+    <string name="sensor_1">സെൻസർ 1</string>
+    <string name="sensor_2">സെൻസർ 2</string>
+    <string name="connect_to_bluetooth">ബ്ലൂട്ടൂത്തുമായി ബന്ധിപ്പിക്കുക</string>
+    <string name="settings_and_calibration">സജ്ജീകരണങ്ങളും കലിബ്രേഷനും</string>
+    <string name="select_language">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="english">ഇംഗ്ലീഷ്</string>
+    <string name="hindi">ഹിന്ദി</string>
+    <string name="tamil">തമിഴ്</string>
     <string name="telugu">తెలుగు</string>
     <string name="malayalam">മലയാളം</string>
-    <string name="home">హోమ్</string>
-    <string name="settings">సెట్టింగ్స్</string>
-    <string name="auto_calibrate">Auto Calibrate</string>
-    <string name="calibration_instructions">Follow these steps for calibration:\n1. Ensure the prosthetic arm is in a neutral position\n2. Press the calibrate button\n3. Wait for confirmation</string>
+    <string name="home">ഹോം</string>
+    <string name="settings">സജ്ജീകരണങ്ങൾ</string>
+    <string name="calibrate">ക്യാലിബ്രേറ്റ്</string>
+    <string name="calibration">కేలిబ్రేషన్</string>
+    <string name="language">భాష</string>
 
     <string-array name="language_options">
-        <item>ఇంగ్లీష్</item>
-        <item>హిందీ</item>
-        <item>తమిళం</item>
+        <item>ഇംഗ്ലീഷ്</item>
+        <item>ഹിന്ദി</item>
+        <item>തമിഴ്</item>
         <item>తెలుగు</item>
         <item>മലയാളം</item>
     </string-array>

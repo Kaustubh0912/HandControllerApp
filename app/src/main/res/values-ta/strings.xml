@@ -1,24 +1,25 @@
 <resources>
-    <string name="prosthetic_arm_status">பிரோஸ்தெட்டிக் கையின நிலை</string>
-    <string name="sensor_1">சென்சார் 1</string>
-    <string name="sensor_2">சென்சார் 2</string>
-    <string name="connect_to_bluetooth">ப்ளூடூத் இணைக்கவும்</string>
-    <string name="settings_and_calibration">அமைப்புகள் மற்றும் ஏற்றுமதி</string>
-    <string name="select_language">மொழி தேர்வு</string>
-    <string name="english">ஆங்கிலம்</string>
-    <string name="hindi">இந்தி</string>
-    <string name="tamil">தமிழ்</string>
+    <string name="prosthetic_arm_status">ప్రోస్తెటిక్ చేతి స్థితి</string>
+    <string name="sensor_1">సెన్సార్ 1</string>
+    <string name="sensor_2">సెన్సార్ 2</string>
+    <string name="connect_to_bluetooth">బ్లూటూత్‌కి కనెక్ట్ అవ్వండి</string>
+    <string name="settings_and_calibration">సెట్టింగ్స్ మరియు కాలిబ్రేషన్</string>
+    <string name="select_language">భాషను ఎంచుకోండి</string>
+    <string name="english">ఇంగ్లీష్</string>
+    <string name="hindi">హిందీ</string>
+    <string name="tamil">తమిళం</string>
     <string name="telugu">తెలుగు</string>
-    <string name="malayalam">മലയാളം</string>
-    <string name="home">முகப்பக்கம்</string>
-    <string name="settings">அமைப்புகள்</string>
-    <string name="auto_calibrate">Auto Calibrate</string>
-    <string name="calibration_instructions">Follow these steps for calibration:\n1. Ensure the prosthetic arm is in a neutral position\n2. Press the calibrate button\n3. Wait for confirmation</string>
+    <string name="malayalam">మലയാളം</string>
+    <string name="home">హోమ్</string>
+    <string name="settings">సెట్టింగ్స్</string>
+    <string name="calibrate">కాలిబ్రేట్</string>
+    <string name="calibration">துல்லியமாக்கல்</string>
+    <string name="language">மொழி</string>
 
     <string-array name="language_options">
-        <item>ஆங்கிலம்</item>
-        <item>இந்தி</item>
-        <item>தமிழ்</item>
+        <item>ఇంగ్లీష్</item>
+        <item>హిందీ</item>
+        <item>తమిళం</item>
         <item>తెలుగు</item>
         <item>മലയാളം</item>
     </string-array>

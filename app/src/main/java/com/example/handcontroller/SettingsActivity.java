@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.handcontroller.utils.InstructionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Locale;
 
@@ -20,6 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView selectLanguage;
     private MaterialButton autoCalibrateButton;
     private TextView calibrationInstructions;
+    private InstructionManager instructionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_settings);
 
+        // Initialize InstructionManager
+        instructionManager = InstructionManager.getInstance(this);
+
         // Initialize views
         selectLanguage = findViewById(R.id.selectLanguage);
         autoCalibrateButton = findViewById(R.id.autocalibrate);
@@ -39,13 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
         selectLanguage.setOnClickListener(v -> openLanguageMenu(v));
 
         // Set click listener for calibration
-        autoCalibrateButton.setOnClickListener(v -> {
-            // Hide the button
-            autoCalibrateButton.setVisibility(View.GONE);
-
-            // Show the instructions
-            calibrationInstructions.setVisibility(View.VISIBLE);
-        });
+        autoCalibrateButton.setOnClickListener(v -> startCalibration());
 
         // Bottom navigation setup
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -68,6 +70,69 @@ public class SettingsActivity extends AppCompatActivity {
         });
     }
 
+    private void startCalibration() {
+        // Hide the calibrate button
+        autoCalibrateButton.setVisibility(View.GONE);
+
+        // Simulate API response for initial calibration state
+        try {
+            JSONObject initialResponse = new JSONObject();
+            initialResponse.put("calibration_state", "INITIAL");
+            instructionManager.updateInstructionsFromApiResponse(initialResponse);
+
+            // Display first instruction
+            updateCalibrationInstructions();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateCalibrationInstructions() {
+        // Show instructions TextView
+        calibrationInstructions.setVisibility(View.VISIBLE);
+
+        // Get current instruction
+        String currentInstruction = instructionManager.getCurrentInstruction();
+        calibrationInstructions.setText(currentInstruction);
+
+        // Set up listener for moving to next instruction
+        calibrationInstructions.setOnClickListener(v -> {
+            // Check if more instructions are available
+            if (instructionManager.hasMoreInstructions()) {
+                // Advance to next instruction
+                instructionManager.advanceInstruction();
+
+                // Update UI with new instruction
+                String nextInstruction = instructionManager.getCurrentInstruction();
+                calibrationInstructions.setText(nextInstruction);
+            } else {
+                // Calibration completed
+                finishCalibration();
+            }
+        });
+    }
+
+    private void finishCalibration() {
+        // Try to simulate a completed calibration
+        try {
+            JSONObject completedResponse = new JSONObject();
+            completedResponse.put("calibration_state", "COMPLETED");
+            instructionManager.updateInstructionsFromApiResponse(completedResponse);
+
+            // Display final instruction
+            calibrationInstructions.setText(instructionManager.getCurrentInstruction());
+
+            // Reset UI after a short delay
+            calibrationInstructions.postDelayed(() -> {
+                calibrationInstructions.setVisibility(View.GONE);
+                autoCalibrateButton.setVisibility(View.VISIBLE);
+            }, 2000);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Existing language-related methods remain the same...
     private void openLanguageMenu(View v) {
         // Create a custom context menu
         registerForContextMenu(selectLanguage);
