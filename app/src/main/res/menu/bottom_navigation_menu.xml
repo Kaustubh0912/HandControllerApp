@@ -4,10 +4,14 @@
 
     <item
         android:id="@+id/home"
-        android:title="@string/home" />
+        android:title="@string/home"
+        android:icon="@drawable/house_solid"/>
+
 
     <item
         android:id="@+id/settings"
-        android:title="@string/settings" />
+        android:title="@string/settings"
+        android:icon="@drawable/gear_solid"/>
+
 
 </menu>
