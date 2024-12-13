@@ -34,6 +34,12 @@
     <string name="close">बंद करें</string>
     <string name="mid">मध्य</string>
 
+    <string name="sensor_delay">Sensor Delay</string>
+    <string name="select_delay">Select Delay</string>
+    <string name="actuation_type">Actuation Type</string>
+    <string name="select_actuation">Select Actuation Type</string>
+    <string name="current_delay">Current delay: %1$d ms</string>
+
     <string-array name="language_options">
         <item>अंग्रेज़ी</item>
         <item>हिंदी</item>
