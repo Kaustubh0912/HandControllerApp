@@ -12,9 +12,27 @@
     <string name="malayalam">Malayalam</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
+    <string name="control">Control</string>
     <string name="calibrate">Calibrate</string>
     <string name="calibration">Calibration</string>
     <string name="language">Language</string>
+    <string name="motorcontrol">Motor Control</string>
+    <string name="motor1">Motor 1</string>
+    <string name="motor2">Motor 2</string>
+    <string name="motor3">Motor 3</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+
+    <!-- New strings for Control Activity -->
+    <string name="status">Status</string>
+    <string name="connection">Connection: </string>
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
+    <string name="emergency_stop">EMERGENCY STOP</string>
+    <string name="presets">Preset Positions</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="mid">Mid</string>
 
     <string-array name="language_options">
         <item>English</item>

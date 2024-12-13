@@ -1,26 +1,44 @@
 <resources>
-    <string name="prosthetic_arm_status">ప్రోస్తెటిక్ చేతి స్థితి</string>
-    <string name="sensor_1">సెన్సార్ 1</string>
-    <string name="sensor_2">సెన్సార్ 2</string>
-    <string name="connect_to_bluetooth">బ్లూటూత్‌కి కనెక్ట్ అవ్వండి</string>
-    <string name="settings_and_calibration">సెట్టింగ్స్ మరియు కాలిబ్రేషన్</string>
-    <string name="select_language">భాషను ఎంచుకోండి</string>
-    <string name="english">ఇంగ్లీష్</string>
-    <string name="hindi">హిందీ</string>
-    <string name="tamil">తమిళం</string>
-    <string name="telugu">తెలుగు</string>
-    <string name="malayalam">మലയാളം</string>
-    <string name="home">హోమ్</string>
-    <string name="settings">సెట్టింగ్స్</string>
-    <string name="calibrate">కాలిబ్రేట్</string>
-    <string name="calibration">துல்லியமாக்கல்</string>
+    <string name="prosthetic_arm_status">புரோஸ்தெடிக் கை நிலை</string>
+    <string name="sensor_1">சென்சார் 1</string>
+    <string name="sensor_2">சென்சார் 2</string>
+    <string name="connect_to_bluetooth">ப்ளூடூத்துடன் இணைக்கவும்</string>
+    <string name="settings_and_calibration">அமைப்புகள் மற்றும் அளவுத்திறன்</string>
+    <string name="select_language">மொழியை தேர்ந்தெடுக்கவும்</string>
+    <string name="english">ஆங்கிலம்</string>
+    <string name="hindi">ஹிந்தி</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="telugu">தெலுங்கு</string>
+    <string name="malayalam">மலையாளம்</string>
+    <string name="home">முகப்பு</string>
+    <string name="settings">அமைப்புகள்</string>
+    <string name="control">கட்டுப்பாடு</string>
+    <string name="calibrate">அளவுத்திறன்</string>
+    <string name="calibration">அளவுத்திறன் செயல்முறை</string>
     <string name="language">மொழி</string>
+    <string name="motorcontrol">மோட்டார் கட்டுப்பாடு</string>
+    <string name="motor1">மோட்டார் 1</string>
+    <string name="motor2">மோட்டார் 2</string>
+    <string name="motor3">மோட்டார் 3</string>
+    <string name="save">சேமிக்கவும்</string>
+    <string name="reset">மீட்டமைக்கவும்</string>
+
+    <!-- New strings for Control Activity -->
+    <string name="status">நிலை</string>
+    <string name="connection">இணைப்பு: </string>
+    <string name="connected">இணைக்கப்பட்டுள்ளது</string>
+    <string name="disconnected">துண்டிக்கப்பட்டது</string>
+    <string name="emergency_stop">அவசர நிறுத்தம்</string>
+    <string name="presets">முன்கூடிய அமைப்புகள்</string>
+    <string name="open">திறக்கவும்</string>
+    <string name="close">மூடவும்</string>
+    <string name="mid">நடுத்தர</string>
 
     <string-array name="language_options">
-        <item>ఇంగ్లీష్</item>
-        <item>హిందీ</item>
-        <item>తమిళం</item>
-        <item>తెలుగు</item>
-        <item>മലയാളം</item>
+        <item>ஆங்கிலம்</item>
+        <item>ஹிந்தி</item>
+        <item>தமிழ்</item>
+        <item>தெலுங்கு</item>
+        <item>மலையாளம்</item>
     </string-array>
 </resources>

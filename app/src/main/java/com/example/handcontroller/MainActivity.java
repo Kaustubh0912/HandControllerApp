@@ -131,19 +131,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNavigation() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setSelectedItemId(R.id.control);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
 
             if (itemId == R.id.home) {
-                // Stay on the home page (no action needed)
+                startActivity(new Intent(this, MainActivity.class));
+                finish();
                 return true;
             } else if (itemId == R.id.settings) {
-                // Navigate to SettingsActivity
-                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
+                finish();
                 return true;
-            } else {
-                return false; // If no valid option is selected
+            } else if (itemId == R.id.control) {
+                startActivity(new Intent(this, ControlActivity.class));
+                finish();
+                return true;
             }
+            return false;
         });
     }
 

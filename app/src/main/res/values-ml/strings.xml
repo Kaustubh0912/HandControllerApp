@@ -1,26 +1,44 @@
 <resources>
-    <string name="prosthetic_arm_status">പ്രോസ്തറ്റിക് കൈ നില</string>
+    <string name="prosthetic_arm_status">പ്രോസ്ഥറ്റിക് കൈയുടെ നില</string>
     <string name="sensor_1">സെൻസർ 1</string>
     <string name="sensor_2">സെൻസർ 2</string>
-    <string name="connect_to_bluetooth">ബ്ലൂട്ടൂത്തുമായി ബന്ധിപ്പിക്കുക</string>
-    <string name="settings_and_calibration">സജ്ജീകരണങ്ങളും കലിബ്രേഷനും</string>
+    <string name="connect_to_bluetooth">Bluetooth-ൽ കണക്റ്റ് ചെയ്യുക</string>
+    <string name="settings_and_calibration">സെറ്റിംഗുകളും കാലിബ്രേഷനും</string>
     <string name="select_language">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
     <string name="english">ഇംഗ്ലീഷ്</string>
     <string name="hindi">ഹിന്ദി</string>
     <string name="tamil">തമിഴ്</string>
-    <string name="telugu">తెలుగు</string>
+    <string name="telugu">തെലുങ്ക്</string>
     <string name="malayalam">മലയാളം</string>
     <string name="home">ഹോം</string>
-    <string name="settings">സജ്ജീകരണങ്ങൾ</string>
-    <string name="calibrate">ക്യാലിബ്രേറ്റ്</string>
-    <string name="calibration">അളവ്</string>
+    <string name="settings">സെറ്റിംഗുകൾ</string>
+    <string name="control">നിയന്ത്രണം</string>
+    <string name="calibrate">കാലിബ്രേറ്റ്</string>
+    <string name="calibration">കാലിബ്രേഷൻ</string>
     <string name="language">ഭാഷ</string>
+    <string name="motorcontrol">മോട്ടോർ നിയന്ത്രണം</string>
+    <string name="motor1">മോട്ടോർ 1</string>
+    <string name="motor2">മോട്ടോർ 2</string>
+    <string name="motor3">മോട്ടോർ 3</string>
+    <string name="save">സംരക്ഷിക്കുക</string>
+    <string name="reset">റിസെറ്റ് ചെയ്യുക</string>
+
+    <!-- New strings for Control Activity -->
+    <string name="status">നില</string>
+    <string name="connection">കണക്ഷൻ: </string>
+    <string name="connected">കണക്റ്റ് ചെയ്തു</string>
+    <string name="disconnected">ഡിസ്കണക്റ്റ് ചെയ്തു</string>
+    <string name="emergency_stop">ആപത് നിര്‍ത്തല്</string>
+    <string name="presets">പ്രിസെറ്റ് നിലകൾ</string>
+    <string name="open">തുറക്കുക</string>
+    <string name="close">അടയ്ക്കുക</string>
+    <string name="mid">മധ്യ</string>
 
     <string-array name="language_options">
         <item>ഇംഗ്ലീഷ്</item>
         <item>ഹിന്ദി</item>
         <item>തമിഴ്</item>
-        <item>తెలుగు</item>
+        <item>തെലുങ്ക്</item>
         <item>മലയാളം</item>
     </string-array>
 </resources>

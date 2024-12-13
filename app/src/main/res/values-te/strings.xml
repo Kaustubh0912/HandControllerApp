@@ -1,26 +1,44 @@
 <resources>
-    <string name="prosthetic_arm_status">പ്രോസ്തറ്റിക് കൈ നില</string>
-    <string name="sensor_1">സെൻസർ 1</string>
-    <string name="sensor_2">സെൻസർ 2</string>
-    <string name="connect_to_bluetooth">ബ്ലൂട്ടൂത്തുമായി ബന്ധിപ്പിക്കുക</string>
-    <string name="settings_and_calibration">സജ്ജീകരണങ്ങളും കലിബ്രേഷനും</string>
-    <string name="select_language">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
-    <string name="english">ഇംഗ്ലീഷ്</string>
-    <string name="hindi">ഹിന്ദി</string>
-    <string name="tamil">തമിഴ്</string>
+    <string name="prosthetic_arm_status">కృత్రిమ చేయి స్థితి</string>
+    <string name="sensor_1">సెన్సార్ 1</string>
+    <string name="sensor_2">సెన్సార్ 2</string>
+    <string name="connect_to_bluetooth">బ్లూటూత్‌కి కనెక్ట్ చేయండి</string>
+    <string name="settings_and_calibration">సెట్టింగ్స్ మరియు క్యాలిబ్రేషన్</string>
+    <string name="select_language">భాషను ఎంచుకోండి</string>
+    <string name="english">ఆంగ్లం</string>
+    <string name="hindi">హిందీ</string>
+    <string name="tamil">తమిళం</string>
     <string name="telugu">తెలుగు</string>
-    <string name="malayalam">മലയാളം</string>
-    <string name="home">ഹോം</string>
-    <string name="settings">സജ്ജീകരണങ്ങൾ</string>
-    <string name="calibrate">ക്യാലിബ്രേറ്റ്</string>
-    <string name="calibration">కేలిబ్రేషన్</string>
+    <string name="malayalam">మలయాళం</string>
+    <string name="home">హోమ్</string>
+    <string name="settings">సెట్టింగ్స్</string>
+    <string name="control">నియంత్రణ</string>
+    <string name="calibrate">క్యాలిబ్రేట్</string>
+    <string name="calibration">క్యాలిబ్రేషన్</string>
     <string name="language">భాష</string>
+    <string name="motorcontrol">మోటార్ నియంత్రణ</string>
+    <string name="motor1">మోటార్ 1</string>
+    <string name="motor2">మోటార్ 2</string>
+    <string name="motor3">మోటార్ 3</string>
+    <string name="save">సేవ్ చేయండి</string>
+    <string name="reset">రీసెట్ చేయండి</string>
+
+    <!-- New strings for Control Activity -->
+    <string name="status">స్థితి</string>
+    <string name="connection">కనెక్షన్: </string>
+    <string name="connected">కనెక్ట్ అయ్యింది</string>
+    <string name="disconnected">డిస్కనెక్ట్ అయ్యింది</string>
+    <string name="emergency_stop">అత్యవసర నిలుపు</string>
+    <string name="presets">ముందస్తు స్థితులు</string>
+    <string name="open">తెరవండి</string>
+    <string name="close">మూసివేయండి</string>
+    <string name="mid">మధ్యస్థ</string>
 
     <string-array name="language_options">
-        <item>ഇംഗ്ലീഷ്</item>
-        <item>ഹിന്ദി</item>
-        <item>തമിഴ്</item>
+        <item>ఆంగ్లం</item>
+        <item>హిందీ</item>
+        <item>తమిళం</item>
         <item>తెలుగు</item>
-        <item>മലയാളം</item>
+        <item>మలయాళం</item>
     </string-array>
 </resources>

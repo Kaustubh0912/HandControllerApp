@@ -57,14 +57,18 @@ public class SettingsActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.home) {
-                // Navigate to HomeActivity
                 startActivity(new Intent(this, MainActivity.class));
-                finish(); // Close current activity
+                finish();
                 return true;
             } else if (itemId == R.id.settings) {
-                // Stay on SettingsActivity
+                startActivity(new Intent(this, SettingsActivity.class));
+                finish();
                 return true;
-            } else {
+            } else if (itemId == R.id.control) {
+                startActivity(new Intent(this, ControlActivity.class));
+                finish();
+                return true;
+            }else {
                 return false;
             }
         });

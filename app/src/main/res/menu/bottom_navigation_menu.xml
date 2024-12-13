@@ -7,11 +7,14 @@
         android:title="@string/home"
         android:icon="@drawable/house_solid"/>
 
+    <item
+        android:id="@+id/control"
+        android:title="@string/control"
+        android:icon="@drawable/gear_solid"/>
 
     <item
         android:id="@+id/settings"
         android:title="@string/settings"
-        android:icon="@drawable/gear_solid"/>
-
+        android:icon="@drawable/bars_solid"/>
 
 </menu>
