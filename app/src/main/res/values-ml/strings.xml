@@ -28,11 +28,17 @@
     <string name="connection">കണക്ഷൻ: </string>
     <string name="connected">കണക്റ്റ് ചെയ്തു</string>
     <string name="disconnected">ഡിസ്കണക്റ്റ് ചെയ്തു</string>
+    <string name="disconnect">Disconnect</string>
+
     <string name="emergency_stop">ആപത് നിര്‍ത്തല്</string>
     <string name="presets">പ്രിസെറ്റ് നിലകൾ</string>
     <string name="open">തുറക്കുക</string>
     <string name="close">അടയ്ക്കുക</string>
     <string name="mid">മധ്യ</string>
+    <string name="battery_level">Battery: %1$s</string>
+    <string name="signal_strength">Signal: %1$s</string>
+    <string name="connecting">Connecting...</string>
+
 
     <string name="sensor_delay">Sensor Delay</string>
     <string name="select_delay">Select Delay</string>

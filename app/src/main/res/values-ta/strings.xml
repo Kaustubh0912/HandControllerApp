@@ -28,11 +28,18 @@
     <string name="connection">இணைப்பு: </string>
     <string name="connected">இணைக்கப்பட்டுள்ளது</string>
     <string name="disconnected">துண்டிக்கப்பட்டது</string>
+    <string name="disconnect">Disconnect</string>
+
     <string name="emergency_stop">அவசர நிறுத்தம்</string>
     <string name="presets">முன்கூடிய அமைப்புகள்</string>
     <string name="open">திறக்கவும்</string>
     <string name="close">மூடவும்</string>
     <string name="mid">நடுத்தர</string>
+    <string name="battery_level">Battery: %1$s</string>
+    <string name="signal_strength">Signal: %1$s</string>
+    <string name="connecting">Connecting...</string>
+
+
 
     <string name="sensor_delay">Sensor Delay</string>
     <string name="select_delay">Select Delay</string>

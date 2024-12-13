@@ -1,21 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.handcontroller">
 
-    <!-- All permissions remain the same -->
+    <!-- Bluetooth Permissions -->
+    <uses-permission android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
+        android:maxSdkVersion="30" />
+
+    <!-- For Android 12 and above -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation"
+        tools:targetApi="s" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+
+    <!-- Location Permissions (required for Bluetooth scanning on some devices) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <!-- Feature declarations -->
+    <uses-feature
+        android:name="android.hardware.bluetooth"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="false" />
+
+    <!-- Vibration Permission for Haptic Feedback -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Storage Permissions for Data Logging -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!-- For Android 13 and above -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
 
     <!-- Application Configuration -->
     <application
         android:allowBackup="true"
-        android:label="Prosthetic Arm App"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Hastakriti"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.HandController.NoActionBar">  <!-- Updated theme -->
+        android:theme="@style/Theme.HandController.NoActionBar"
+        tools:targetApi="31">
 
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.HandController.NoActionBar">  <!-- Specific theme -->
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HandController.NoActionBar"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -25,15 +68,34 @@
         <!-- Settings Activity -->
         <activity
             android:name=".SettingsActivity"
-            android:exported="true"
-            android:theme="@style/Theme.HandController.NoActionBar" />  <!-- Specific theme -->
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HandController.NoActionBar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
+        <!-- Control Activity -->
         <activity
             android:name=".ControlActivity"
-            android:exported="true"
-            android:theme="@style/Theme.HandController.NoActionBar" />  <!-- Specific theme -->
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.HandController.NoActionBar"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
 
-        <!-- Metadata remains the same -->
+        <!-- Services -->
+        <service
+            android:name=".services.BluetoothService"
+            android:enabled="true"
+            android:exported="false" />
+
 
     </application>
+
 </manifest>

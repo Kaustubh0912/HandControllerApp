@@ -28,11 +28,17 @@
     <string name="connection">कनेक्शन: </string>
     <string name="connected">कनेक्टेड</string>
     <string name="disconnected">डिसकनेक्टेड</string>
+    <string name="disconnect">Disconnect</string>
+
     <string name="emergency_stop">आपातकालीन रोक</string>
     <string name="presets">प्रिसेट पोजीशन</string>
     <string name="open">खोलें</string>
     <string name="close">बंद करें</string>
     <string name="mid">मध्य</string>
+    <string name="battery_level">Battery: %1$s</string>
+    <string name="signal_strength">Signal: %1$s</string>
+    <string name="connecting">Connecting...</string>
+
 
     <string name="sensor_delay">Sensor Delay</string>
     <string name="select_delay">Select Delay</string>

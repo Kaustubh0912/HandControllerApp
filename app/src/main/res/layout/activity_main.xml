@@ -17,9 +17,51 @@
         android:textColor="#bcccdc"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- Status Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/statusCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#1e3a57"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:weightSum="3">
+
+            <TextView
+                android:id="@+id/batteryLevel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Battery: 85%"
+                android:textColor="#bcccdc"/>
+
+            <TextView
+                android:id="@+id/signalStrength"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Signal: Strong"
+                android:textColor="#bcccdc"/>
+
+            <TextView
+                android:id="@+id/connectionStatus"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Disconnected"
+                android:textColor="#FF0000"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <!-- Sensor 1 Card -->
     <androidx.cardview.widget.CardView
@@ -30,31 +72,15 @@
         app:cardBackgroundColor="#1e3a57"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintHeight_percent="0.35">
+        app:layout_constraintTop_toBottomOf="@id/statusCard"
+        app:layout_constraintHeight_percent="0.3">
 
-        <LinearLayout
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphSensor1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"/>
 
-            <TextView
-                android:id="@+id/tvSensor1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sensor_1"
-                android:textColor="#bcccdc"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/graphSensor1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#1e3a57"/>
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <!-- Sensor 2 Card -->
@@ -67,30 +93,14 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
         app:layout_constraintTop_toBottomOf="@id/cardSensor1"
-        app:layout_constraintHeight_percent="0.35">
+        app:layout_constraintHeight_percent="0.3">
 
-        <LinearLayout
+        <com.jjoe64.graphview.GraphView
+            android:id="@+id/graphSensor2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="16dp"/>
 
-            <TextView
-                android:id="@+id/tvSensor2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sensor_2"
-                android:textColor="#bcccdc"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-
-            <com.jjoe64.graphview.GraphView
-                android:id="@+id/graphSensor2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#1e3a57"/>
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <!-- Connect Button -->
@@ -104,9 +114,7 @@
         app:cornerRadius="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@id/bottom_navigation"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="16dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -117,6 +125,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_navigation_menu"
         app:itemIconTint="@android:color/white"
-        app:itemTextColor="@android:color/white" />
+        app:itemTextColor="@android:color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

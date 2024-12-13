@@ -28,11 +28,17 @@
     <string name="connection">కనెక్షన్: </string>
     <string name="connected">కనెక్ట్ అయ్యింది</string>
     <string name="disconnected">డిస్కనెక్ట్ అయ్యింది</string>
+    <string name="disconnect">Disconnect</string>
+
     <string name="emergency_stop">అత్యవసర నిలుపు</string>
     <string name="presets">ముందస్తు స్థితులు</string>
     <string name="open">తెరవండి</string>
     <string name="close">మూసివేయండి</string>
     <string name="mid">మధ్యస్థ</string>
+    <string name="battery_level">Battery: %1$s</string>
+    <string name="signal_strength">Signal: %1$s</string>
+    <string name="connecting">Connecting...</string>
+
 
     <string name="sensor_delay">Sensor Delay</string>
     <string name="select_delay">Select Delay</string>
