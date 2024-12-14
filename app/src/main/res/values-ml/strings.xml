@@ -1,51 +1,81 @@
 <resources>
-    <string name="prosthetic_arm_status">പ്രോസ്ഥറ്റിക് കൈയുടെ നില</string>
-    <string name="sensor_1">സെൻസർ 1</string>
-    <string name="sensor_2">സെൻസർ 2</string>
-    <string name="connect_to_bluetooth">Bluetooth-ൽ കണക്റ്റ് ചെയ്യുക</string>
-    <string name="settings_and_calibration">സെറ്റിംഗുകളും കാലിബ്രേഷനും</string>
+    <!-- General Strings -->
+    <string name="prosthetic_arm_status">കൃതക കൈയുടെ സ്ഥിതി</string>
+    <string name="connect_to_bluetooth">ബ്ലൂടൂത്തിന് കണക്റ്റുചെയ്യുക</string>
+    <string name="settings_and_calibration">സെറ്റിംഗുകളും കലിബ്രേഷനും</string>
     <string name="select_language">ഭാഷ തിരഞ്ഞെടുക്കുക</string>
+    <string name="home">ഹോം</string>
+    <string name="settings">സെറ്റിംഗ്സ്</string>
+    <string name="control">നിയന്ത്രണം</string>
+    <string name="calibrate">കലിബ്രേറ്റ് ചെയ്യുക</string>
+    <string name="calibration">കലിബ്രേഷൻ</string>
+    <string name="language">ഭാഷ</string>
+    <string name="save">സേവ് ചെയ്യുക</string>
+    <string name="reset">റീസെറ്റ് ചെയ്യുക</string>
+
+    <!-- Language Options -->
     <string name="english">ഇംഗ്ലീഷ്</string>
     <string name="hindi">ഹിന്ദി</string>
     <string name="tamil">തമിഴ്</string>
     <string name="telugu">തെലുങ്ക്</string>
     <string name="malayalam">മലയാളം</string>
-    <string name="home">ഹോം</string>
-    <string name="settings">സെറ്റിംഗുകൾ</string>
-    <string name="control">നിയന്ത്രണം</string>
-    <string name="calibrate">കാലിബ്രേറ്റ്</string>
-    <string name="calibration">കാലിബ്രേഷൻ</string>
-    <string name="language">ഭാഷ</string>
-    <string name="motorcontrol">മോട്ടോർ നിയന്ത്രണം</string>
-    <string name="motor1">മോട്ടോർ 1</string>
-    <string name="motor2">മോട്ടോർ 2</string>
-    <string name="motor3">മോട്ടോർ 3</string>
-    <string name="save">സംരക്ഷിക്കുക</string>
-    <string name="reset">റിസെറ്റ് ചെയ്യുക</string>
 
-    <!-- New strings for Control Activity -->
-    <string name="status">നില</string>
+    <!-- Motor Control -->
+    <string name="motor_control">മോട്ടോർ നിയന്ത്രണം</string>
+    <string name="motor_1">മോട്ടോർ 1</string>
+    <string name="motor_2">മോട്ടോർ 2</string>
+    <string name="motor_3">മോട്ടോർ 3</string>
+
+    <!-- Control Activity -->
+    <string name="status">സ്ഥിതി</string>
     <string name="connection">കണക്ഷൻ: </string>
-    <string name="connected">കണക്റ്റ് ചെയ്തു</string>
-    <string name="disconnected">ഡിസ്കണക്റ്റ് ചെയ്തു</string>
-    <string name="disconnect">Disconnect</string>
-
-    <string name="emergency_stop">ആപത് നിര്‍ത്തല്</string>
-    <string name="presets">പ്രിസെറ്റ് നിലകൾ</string>
+    <string name="connected">കണക്റ്റുചെയ്തു</string>
+    <string name="disconnected">ഡിസ്കണക്റ്റുചെയ്തു</string>
+    <string name="disconnect">ഡിസ്കണക്റ്റ് ചെയ്യുക</string>
+    <string name="emergency_stop">അവസര സ്റ്റോപ്പ്</string>
+    <string name="presets">പ്രിസെറ്റുകൾ</string>
     <string name="open">തുറക്കുക</string>
     <string name="close">അടയ്ക്കുക</string>
-    <string name="mid">മധ്യ</string>
-    <string name="battery_level">Battery: %1$s</string>
-    <string name="signal_strength">Signal: %1$s</string>
-    <string name="connecting">Connecting...</string>
+    <string name="mid">മധ്യം</string>
+    <string name="battery_level">ബാറ്ററി: %1$s</string>
+    <string name="signal_strength">സിഗ്നൽ: %1$s</string>
+    <string name="connecting">കണക്റ്റുചെയ്യുന്നു...</string>
 
+    <!-- Sensor Configuration -->
+    <string name="sensor_delay">സെൻസർ വൈകിയ സമയം</string>
+    <string name="select_delay">വൈകിയ സമയം തിരഞ്ഞെടുക്കുക</string>
+    <string name="actuation_type">ചലന തരം</string>
+    <string name="select_actuation">ചലന തരം തിരഞ്ഞെടുക്കുക</string>
+    <string name="current_delay">ഇപ്പോഴത്തെ വൈകിയ സമയം: %1$d മില്ലിസെക്കൻഡ്</string>
 
-    <string name="sensor_delay">Sensor Delay</string>
-    <string name="select_delay">Select Delay</string>
-    <string name="actuation_type">Actuation Type</string>
-    <string name="select_actuation">Select Actuation Type</string>
-    <string name="current_delay">Current delay: %1$d ms</string>
+    <!-- Exercises -->
+    <string name="exercises_to_improve_control">നിയന്ത്രണം മെച്ചപ്പെടുത്താൻ വ്യായാമങ്ങൾ</string>
+    <string name="exercise_info_title">നിയന്ത്രണത്തിനായി വ്യായാമങ്ങൾ</string>
+    <string name="exercise_info_content">## അടിസ്ഥാന വ്യായാമങ്ങൾ\n\n
+1. **വിരൽ ചലന വ്യായാമം**\n
+   - ഓരോ വിരലും വ്യത്യസ്തമായി ചലിപ്പിക്കുക\n
+   - ചെറുതും നിയന്ത്രിതവുമായ ചലനങ്ങൾ പരിശീലിക്കുക\n
+   - ഓരോ വിരലും 10 തവണ ആവർത്തിക്കുക\n\n
+2. **പിടുത്തം വർധിപ്പിക്കാൻ വ്യായാമം**\n
+   - താഴെപ്പറയുന്ന പിടുത്തങ്ങൾ പരിശീലിക്കുക:\n
+   - മൃദുവായ പിടുത്തം (കാഗിത് പിടിക്കുക)\n
+   - മിതമായ പിടുത്തം (വാട്ടർ ബോട്ടിൽ)\n
+   - ഉറച്ച പിടുത്തം (റബ്ബർ ബാൾ)\n\n
+3. **സൂക്ഷ്മ പ്രവർത്തനങ്ങൾ**\n
+   - ചെറുതായ വസ്തുക്കൾ എടുക്കുക\n
+   - ബ്ലോക്കുകൾ ചേർക്കുക\n
+   - എഴുതലും വരയ്ക്കലും പരിശീലിക്കുക\n\n
+## പ്രഗത്ഭ വ്യായാമങ്ങൾ\n\n
+1. **വേഗ നിയന്ത്രണം**\n
+   - ചലന വേഗത മാറുക\n
+   - വേഗതയും മന്ദഗതിയും പരിശീലിക്കുക\n
+   - സൗമ്യതയുള്ള മാറ്റങ്ങൾ ശ്രദ്ധിക്കുക\n\n
+2. **സമന്വയം**\n
+   - ചേർന്ന ചലനങ്ങൾ പരിശീലിക്കുക\n
+   - സാധാരണ കൈ ചലനങ്ങൾ മിറർ ചെയ്യുക\n
+   - ദിവസവും ചെയ്യേണ്ട പ്രവർത്തനങ്ങൾ പരിശീലിക്കുക</string>
 
+    <!-- Language Options as String-Array -->
     <string-array name="language_options">
         <item>ഇംഗ്ലീഷ്</item>
         <item>ഹിന്ദി</item>
@@ -53,31 +83,4 @@
         <item>തെലുങ്ക്</item>
         <item>മലയാളം</item>
     </string-array>
-
-
-    <string name="exercises_to_improve_control">Exercises to Improve Control</string>
-    <string name="exercise_info_title">Control Improvement Exercises</string>
-    <string name="exercise_info_content">## Basic Exercises\n\n
-1. **Isolation Exercise**\n
-   - Focus on moving one finger at a time\n
-   - Practice making small, controlled movements\n
-   - Repeat 10 times for each finger\n\n
-2. **Grip Training**\n
-   - Practice different grip types:\n
-   - Light grip (holding paper)\n
-   - Medium grip (water bottle)\n
-   - Firm grip (stress ball)\n\n
-3. **Precision Tasks**\n
-   - Pick up small objects\n
-   - Stack blocks\n
-   - Practice writing or drawing\n\n
-## Advanced Exercises\n\n
-1. **Speed Control**\n
-   - Vary movement speed\n
-   - Practice quick and slow movements\n
-   - Focus on smooth transitions\n\n
-2. **Coordination**\n
-   - Combined movements\n
-   - Mirror natural hand movements\n
-   - Practice daily tasks</string>
 </resources>

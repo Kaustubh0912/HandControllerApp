@@ -1,82 +1,86 @@
 <resources>
-    <string name="prosthetic_arm_status">प्रोस्थेटिक हाथ की स्थिति</string>
-    <string name="sensor_1">सेंसर 1</string>
-    <string name="sensor_2">सेंसर 2</string>
+    <!-- General Strings -->
+    <string name="prosthetic_arm_status">कृत्रिम हाथ की स्थिति</string>
     <string name="connect_to_bluetooth">ब्लूटूथ से कनेक्ट करें</string>
     <string name="settings_and_calibration">सेटिंग्स और कैलिब्रेशन</string>
     <string name="select_language">भाषा चुनें</string>
-    <string name="english">अंग्रेज़ी</string>
-    <string name="hindi">हिंदी</string>
-    <string name="tamil">तमिल</string>
-    <string name="telugu">तेलुगु</string>
-    <string name="malayalam">मलयालम</string>
-    <string name="home">मुख्य पृष्ठ</string>
+    <string name="home">होम</string>
     <string name="settings">सेटिंग्स</string>
     <string name="control">नियंत्रण</string>
-    <string name="calibrate">कैलिब्रेट</string>
+    <string name="calibrate">कैलिब्रेट करें</string>
     <string name="calibration">कैलिब्रेशन</string>
     <string name="language">भाषा</string>
-    <string name="motorcontrol">मोटर नियंत्रण</string>
-    <string name="motor1">मोटर 1</string>
-    <string name="motor2">मोटर 2</string>
-    <string name="motor3">मोटर 3</string>
     <string name="save">सहेजें</string>
     <string name="reset">रीसेट करें</string>
 
-    <!-- New strings for Control Activity -->
+    <!-- Language Options -->
+    <string name="english">अंग्रेज़ी</string>
+    <string name="hindi">हिन्दी</string>
+    <string name="tamil">तमिल</string>
+    <string name="telugu">तेलुगू</string>
+    <string name="malayalam">मलयालम</string>
+
+    <!-- Motor Control -->
+    <string name="motor_control">मोटर नियंत्रण</string>
+    <string name="motor_1">मोटर 1</string>
+    <string name="motor_2">मोटर 2</string>
+    <string name="motor_3">मोटर 3</string>
+
+    <!-- Control Activity -->
     <string name="status">स्थिति</string>
     <string name="connection">कनेक्शन: </string>
     <string name="connected">कनेक्टेड</string>
-    <string name="disconnected">डिसकनेक्टेड</string>
-    <string name="disconnect">Disconnect</string>
-
+    <string name="disconnected">डिस्कनेक्टेड</string>
+    <string name="disconnect">डिस्कनेक्ट करें</string>
     <string name="emergency_stop">आपातकालीन रोक</string>
-    <string name="presets">प्रिसेट पोजीशन</string>
+    <string name="presets">पूर्व निर्धारित स्थितियाँ</string>
     <string name="open">खोलें</string>
     <string name="close">बंद करें</string>
     <string name="mid">मध्य</string>
-    <string name="battery_level">Battery: %1$s</string>
-    <string name="signal_strength">Signal: %1$s</string>
-    <string name="connecting">Connecting...</string>
+    <string name="battery_level">बैटरी: %1$s</string>
+    <string name="signal_strength">सिग्नल: %1$s</string>
+    <string name="connecting">कनेक्ट हो रहा है...</string>
 
+    <!-- Sensor Configuration -->
+    <string name="sensor_delay">सेंसर विलंब</string>
+    <string name="select_delay">विलंब चुनें</string>
+    <string name="actuation_type">सक्रियण प्रकार</string>
+    <string name="select_actuation">सक्रियण प्रकार चुनें</string>
+    <string name="current_delay">वर्तमान विलंब: %1$d ms</string>
 
-    <string name="sensor_delay">Sensor Delay</string>
-    <string name="select_delay">Select Delay</string>
-    <string name="actuation_type">Actuation Type</string>
-    <string name="select_actuation">Select Actuation Type</string>
-    <string name="current_delay">Current delay: %1$d ms</string>
+    <!-- Exercises -->
+    <string name="exercises_to_improve_control">नियंत्रण में सुधार के लिए अभ्यास</string>
+    <string name="exercise_info_title">नियंत्रण सुधार अभ्यास</string>
+    <string name="exercise_info_content">## बुनियादी अभ्यास\n\n
+1. **अलगाव अभ्यास**\n
+   - एक समय में एक उंगली को हिलाने पर ध्यान दें\n
+   - छोटे, नियंत्रित आंदोलनों का अभ्यास करें\n
+   - प्रत्येक उंगली के लिए 10 बार दोहराएं\n\n
+2. **ग्रिप प्रशिक्षण**\n
+   - अलग-अलग ग्रिप प्रकारों का अभ्यास करें:\n
+   - हल्की ग्रिप (कागज पकड़ना)\n
+   - मध्यम ग्रिप (पानी की बोतल)\n
+   - दृढ़ ग्रिप (स्ट्रेस बॉल)\n\n
+3. **सटीकता कार्य**\n
+   - छोटे वस्तुओं को उठाएं\n
+   - ब्लॉक स्टैक करें\n
+   - लिखने या ड्राइंग का अभ्यास करें\n\n
+## उन्नत अभ्यास\n\n
+1. **गति नियंत्रण**\n
+   - गति में बदलाव करें\n
+   - तेज और धीमी गति का अभ्यास करें\n
+   - चिकने संक्रमण पर ध्यान दें\n\n
+2. **समन्वय**\n
+   - संयुक्त आंदोलनों का अभ्यास करें\n
+   - प्राकृतिक हाथ की हरकतों की नकल करें\n
+   - दैनिक कार्यों का अभ्यास करें</string>
 
+    <!-- Language Options as String-Array -->
     <string-array name="language_options">
         <item>अंग्रेज़ी</item>
-        <item>हिंदी</item>
+        <item>हिन्दी</item>
         <item>तमिल</item>
-        <item>तेलुगु</item>
+        <item>तेलुगू</item>
         <item>मलयालम</item>
     </string-array>
-
-    <string name="exercises_to_improve_control">Exercises to Improve Control</string>
-    <string name="exercise_info_title">Control Improvement Exercises</string>
-    <string name="exercise_info_content">## Basic Exercises\n\n
-1. **Isolation Exercise**\n
-   - Focus on moving one finger at a time\n
-   - Practice making small, controlled movements\n
-   - Repeat 10 times for each finger\n\n
-2. **Grip Training**\n
-   - Practice different grip types:\n
-   - Light grip (holding paper)\n
-   - Medium grip (water bottle)\n
-   - Firm grip (stress ball)\n\n
-3. **Precision Tasks**\n
-   - Pick up small objects\n
-   - Stack blocks\n
-   - Practice writing or drawing\n\n
-## Advanced Exercises\n\n
-1. **Speed Control**\n
-   - Vary movement speed\n
-   - Practice quick and slow movements\n
-   - Focus on smooth transitions\n\n
-2. **Coordination**\n
-   - Combined movements\n
-   - Mirror natural hand movements\n
-   - Practice daily tasks</string>
 </resources>

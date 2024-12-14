@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Text sizes -->
+    <dimen name="text_size_title">28sp</dimen>
+    <dimen name="text_size_header">18sp</dimen>
+    <dimen name="text_size_regular">16sp</dimen>
+
+    <!-- Spacing -->
+    <dimen name="spacing_layout">16dp</dimen>
+    <dimen name="spacing_card">24dp</dimen>
+    <dimen name="spacing_element">8dp</dimen>
+    <dimen name="spacing_section">24dp</dimen>
+
+    <!-- Card properties -->
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="button_corner_radius">8dp</dimen>
+</resources>

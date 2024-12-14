@@ -1,82 +1,86 @@
 <resources>
-    <string name="prosthetic_arm_status">కృత్రిమ చేయి స్థితి</string>
-    <string name="sensor_1">సెన్సార్ 1</string>
-    <string name="sensor_2">సెన్సార్ 2</string>
-    <string name="connect_to_bluetooth">బ్లూటూత్‌కి కనెక్ట్ చేయండి</string>
+    <!-- General Strings -->
+    <string name="prosthetic_arm_status">కృత్రిమ చేతి స్థితి</string>
+    <string name="connect_to_bluetooth">బ్లూటూత్‌కు కనెక్ట్ చేయండి</string>
     <string name="settings_and_calibration">సెట్టింగ్స్ మరియు క్యాలిబ్రేషన్</string>
     <string name="select_language">భాషను ఎంచుకోండి</string>
-    <string name="english">ఆంగ్లం</string>
+    <string name="home">హోమ్</string>
+    <string name="settings">సెట్టింగ్స్</string>
+    <string name="control">నియంత్రణ</string>
+    <string name="calibrate">క్యాలిబ్రేట్ చేయండి</string>
+    <string name="calibration">క్యాలిబ్రేషన్</string>
+    <string name="language">భాష</string>
+    <string name="save">సేవ్ చేయండి</string>
+    <string name="reset">రీసెట్ చేయండి</string>
+
+    <!-- Language Options -->
+    <string name="english">ఇంగ్లీష్</string>
     <string name="hindi">హిందీ</string>
     <string name="tamil">తమిళం</string>
     <string name="telugu">తెలుగు</string>
     <string name="malayalam">మలయాళం</string>
-    <string name="home">హోమ్</string>
-    <string name="settings">సెట్టింగ్స్</string>
-    <string name="control">నియంత్రణ</string>
-    <string name="calibrate">క్యాలిబ్రేట్</string>
-    <string name="calibration">క్యాలిబ్రేషన్</string>
-    <string name="language">భాష</string>
-    <string name="motorcontrol">మోటార్ నియంత్రణ</string>
-    <string name="motor1">మోటార్ 1</string>
-    <string name="motor2">మోటార్ 2</string>
-    <string name="motor3">మోటార్ 3</string>
-    <string name="save">సేవ్ చేయండి</string>
-    <string name="reset">రీసెట్ చేయండి</string>
 
-    <!-- New strings for Control Activity -->
+    <!-- Motor Control -->
+    <string name="motor_control">మోటార్ నియంత్రణ</string>
+    <string name="motor_1">మోటార్ 1</string>
+    <string name="motor_2">మోటార్ 2</string>
+    <string name="motor_3">మోటార్ 3</string>
+
+    <!-- Control Activity -->
     <string name="status">స్థితి</string>
     <string name="connection">కనెక్షన్: </string>
-    <string name="connected">కనెక్ట్ అయ్యింది</string>
-    <string name="disconnected">డిస్కనెక్ట్ అయ్యింది</string>
-    <string name="disconnect">Disconnect</string>
-
-    <string name="emergency_stop">అత్యవసర నిలుపు</string>
-    <string name="presets">ముందస్తు స్థితులు</string>
+    <string name="connected">కనెక్ట్ అయింది</string>
+    <string name="disconnected">డిస్కనెక్ట్ అయింది</string>
+    <string name="disconnect">డిస్కనెక్ట్ చేయండి</string>
+    <string name="emergency_stop">తక్షణ ఆపివేత</string>
+    <string name="presets">ప్రీసెట్ పొజిషన్స్</string>
     <string name="open">తెరవండి</string>
     <string name="close">మూసివేయండి</string>
-    <string name="mid">మధ్యస్థ</string>
-    <string name="battery_level">Battery: %1$s</string>
-    <string name="signal_strength">Signal: %1$s</string>
-    <string name="connecting">Connecting...</string>
+    <string name="mid">మధ్య</string>
+    <string name="battery_level">బ్యాటరీ: %1$s</string>
+    <string name="signal_strength">సిగ్నల్: %1$s</string>
+    <string name="connecting">కనెక్ట్ అవుతోంది...</string>
 
+    <!-- Sensor Configuration -->
+    <string name="sensor_delay">సెన్సార్ ఆలస్యం</string>
+    <string name="select_delay">ఆలస్యాన్ని ఎంచుకోండి</string>
+    <string name="actuation_type">క్రియాశీలత రకం</string>
+    <string name="select_actuation">క్రియాశీలత రకం ఎంచుకోండి</string>
+    <string name="current_delay">ప్రస్తుత ఆలస్యం: %1$d మి.సె</string>
 
-    <string name="sensor_delay">Sensor Delay</string>
-    <string name="select_delay">Select Delay</string>
-    <string name="actuation_type">Actuation Type</string>
-    <string name="select_actuation">Select Actuation Type</string>
-    <string name="current_delay">Current delay: %1$d ms</string>
+    <!-- Exercises -->
+    <string name="exercises_to_improve_control">నియంత్రణ మెరుగుపరచడానికి వ్యాయామాలు</string>
+    <string name="exercise_info_title">నియంత్రణ మెరుగుదల కోసం వ్యాయామాలు</string>
+    <string name="exercise_info_content">## ప్రాథమిక వ్యాయామాలు\n\n
+1. **విరాళాల కదలిక వ్యాయామం**\n
+   - ఒక్కొక్క వేళ్లను వేరు చేసి కదపండి\n
+   - చిన్న, నియంత్రిత కదలికలు సాధన చేయండి\n
+   - ఒక్కొక్క వేళ్లను 10 సార్లు పునరావృతం చేయండి\n\n
+2. **పట్టుదల అభ్యాసం**\n
+   - ఈ క్రింది పట్టును సాధన చేయండి:\n
+   - తేలికపాటి పట్టు (కాగితం పట్టుకోవడం)\n
+   - మోస్తరు పట్టు (వాటర్ బాటిల్)\n
+   - గట్టి పట్టు (స్ట్రెస్ బాల్)\n\n
+3. **ఖచ్చితమైన పనులు**\n
+   - చిన్న వస్తువులను ఎత్తుకోండి\n
+   - బ్లాకులను కట్టండి\n
+   - వ్రాయడం లేదా చిత్రించడం సాధన చేయండి\n\n
+## ప్రगतిశీల వ్యాయామాలు\n\n
+1. **వేగ నియంత్రణ**\n
+   - కదలిక వేగాన్ని మార్చండి\n
+   - వేగంగా మరియు నెమ్మదిగా కదలికలను సాధన చేయండి\n
+   - సజావుగా మార్పులను పరిశీలించండి\n\n
+2. **సమన్వయం**\n
+   - కూర్చిన కదలికలను సాధన చేయండి\n
+   - సహజమైన చేతి కదలికలను మిర్రర్ చేయండి\n
+   - రోజువారీ పనులను సాధన చేయండి</string>
 
+    <!-- Language Options as String-Array -->
     <string-array name="language_options">
-        <item>ఆంగ్లం</item>
+        <item>ఇంగ్లీష్</item>
         <item>హిందీ</item>
         <item>తమిళం</item>
         <item>తెలుగు</item>
         <item>మలయాళం</item>
     </string-array>
-
-    <string name="exercises_to_improve_control">Exercises to Improve Control</string>
-    <string name="exercise_info_title">Control Improvement Exercises</string>
-    <string name="exercise_info_content">## Basic Exercises\n\n
-1. **Isolation Exercise**\n
-   - Focus on moving one finger at a time\n
-   - Practice making small, controlled movements\n
-   - Repeat 10 times for each finger\n\n
-2. **Grip Training**\n
-   - Practice different grip types:\n
-   - Light grip (holding paper)\n
-   - Medium grip (water bottle)\n
-   - Firm grip (stress ball)\n\n
-3. **Precision Tasks**\n
-   - Pick up small objects\n
-   - Stack blocks\n
-   - Practice writing or drawing\n\n
-## Advanced Exercises\n\n
-1. **Speed Control**\n
-   - Vary movement speed\n
-   - Practice quick and slow movements\n
-   - Focus on smooth transitions\n\n
-2. **Coordination**\n
-   - Combined movements\n
-   - Mirror natural hand movements\n
-   - Practice daily tasks</string>
 </resources>

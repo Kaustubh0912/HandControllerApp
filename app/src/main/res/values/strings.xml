@@ -1,29 +1,32 @@
 <resources>
+    <!-- General Strings -->
     <string name="prosthetic_arm_status">Prosthetic Arm Status</string>
-    <string name="sensor_1">Sensor 1</string>
-    <string name="sensor_2">Sensor 2</string>
     <string name="connect_to_bluetooth">Connect to Bluetooth</string>
     <string name="settings_and_calibration">Settings and Calibration</string>
     <string name="select_language">Select Language</string>
-    <string name="english">English</string>
-    <string name="hindi">Hindi</string>
-    <string name="tamil">Tamil</string>
-    <string name="telugu">Telugu</string>
-    <string name="malayalam">Malayalam</string>
     <string name="home">Home</string>
     <string name="settings">Settings</string>
     <string name="control">Control</string>
     <string name="calibrate">Calibrate</string>
     <string name="calibration">Calibration</string>
     <string name="language">Language</string>
+    <string name="save">Save</string>
+    <string name="reset">Reset</string>
+
+    <!-- Language Options -->
+    <string name="english">English</string>
+    <string name="hindi">Hindi</string>
+    <string name="tamil">Tamil</string>
+    <string name="telugu">Telugu</string>
+    <string name="malayalam">Malayalam</string>
+
+    <!-- Motor Control -->
     <string name="motorcontrol">Motor Control</string>
     <string name="motor1">Motor 1</string>
     <string name="motor2">Motor 2</string>
     <string name="motor3">Motor 3</string>
-    <string name="save">Save</string>
-    <string name="reset">Reset</string>
 
-    <!-- New strings for Control Activity -->
+    <!-- Control Activity -->
     <string name="status">Status</string>
     <string name="connection">Connection: </string>
     <string name="connected">Connected</string>
@@ -38,21 +41,14 @@
     <string name="signal_strength">Signal: %1$s</string>
     <string name="connecting">Connecting...</string>
 
-
+    <!-- Sensor Configuration -->
     <string name="sensor_delay">Sensor Delay</string>
     <string name="select_delay">Select Delay</string>
     <string name="actuation_type">Actuation Type</string>
     <string name="select_actuation">Select Actuation Type</string>
     <string name="current_delay">Current delay: %1$d ms</string>
 
-    <string-array name="language_options">
-        <item>English</item>
-        <item>Hindi</item>
-        <item>Tamil</item>
-        <item>Telugu</item>
-        <item>Malayalam</item>
-    </string-array>
-
+    <!-- Exercises -->
     <string name="exercises_to_improve_control">Exercises to Improve Control</string>
     <string name="exercise_info_title">Control Improvement Exercises</string>
     <string name="exercise_info_content">## Basic Exercises\n\n
@@ -78,4 +74,13 @@
    - Combined movements\n
    - Mirror natural hand movements\n
    - Practice daily tasks</string>
+
+    <!-- Language Options as String-Array -->
+    <string-array name="language_options">
+        <item>English</item>
+        <item>Hindi</item>
+        <item>Tamil</item>
+        <item>Telugu</item>
+        <item>Malayalam</item>
+    </string-array>
 </resources>
