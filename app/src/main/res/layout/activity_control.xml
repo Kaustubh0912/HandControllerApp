@@ -278,6 +278,21 @@
                         android:layout_marginStart="8dp"
                         app:backgroundTint="#486581"/>
                 </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <!-- Exercise Information Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/exerciseInfoButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/exercises_to_improve_control"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="#486581"
+                    app:cornerRadius="8dp"
+                    android:layout_marginTop="24dp"/>
+            </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </ScrollView>

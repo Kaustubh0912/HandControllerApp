@@ -52,4 +52,30 @@
         <item>Telugu</item>
         <item>Malayalam</item>
     </string-array>
+
+    <string name="exercises_to_improve_control">Exercises to Improve Control</string>
+    <string name="exercise_info_title">Control Improvement Exercises</string>
+    <string name="exercise_info_content">## Basic Exercises\n\n
+1. **Isolation Exercise**\n
+   - Focus on moving one finger at a time\n
+   - Practice making small, controlled movements\n
+   - Repeat 10 times for each finger\n\n
+2. **Grip Training**\n
+   - Practice different grip types:\n
+   - Light grip (holding paper)\n
+   - Medium grip (water bottle)\n
+   - Firm grip (stress ball)\n\n
+3. **Precision Tasks**\n
+   - Pick up small objects\n
+   - Stack blocks\n
+   - Practice writing or drawing\n\n
+## Advanced Exercises\n\n
+1. **Speed Control**\n
+   - Vary movement speed\n
+   - Practice quick and slow movements\n
+   - Focus on smooth transitions\n\n
+2. **Coordination**\n
+   - Combined movements\n
+   - Mirror natural hand movements\n
+   - Practice daily tasks</string>
 </resources>

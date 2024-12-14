@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     // UI Components
     private GraphView graphSensor1, graphSensor2;
     private LineGraphSeries<DataPoint> seriesSensor1, seriesSensor2;
-    private TextView batteryLevelText, signalStrengthText, connectionStatusText;
+    private TextView  signalStrengthText, connectionStatusText;
     private CardView statusCard;
     private MaterialButton connectButton;
 
@@ -117,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
     private void initializeViews() {
         graphSensor1 = findViewById(R.id.graphSensor1);
         graphSensor2 = findViewById(R.id.graphSensor2);
-        batteryLevelText = findViewById(R.id.batteryLevel);
         signalStrengthText = findViewById(R.id.signalStrength);
         connectionStatusText = findViewById(R.id.connectionStatus);
         statusCard = findViewById(R.id.statusCard);
@@ -325,15 +324,12 @@ public class MainActivity extends AppCompatActivity {
     private void updateStatus() {
         if (bluetoothService != null && bluetoothService.isConnected()) {
             // Real device status
-            batteryLevelText.setText(getString(R.string.battery_level, "85%"));
             signalStrengthText.setText(getString(R.string.signal_strength, "Strong"));
             connectionStatusText.setText(R.string.connected);
             connectionStatusText.setTextColor(Color.GREEN);
             connectButton.setText(R.string.disconnect);
         } else {
             // Demo status
-            int batteryLevel = 85 - (int)(lastX % 20);
-            batteryLevelText.setText(getString(R.string.battery_level, batteryLevel + "%"));
 
             int signalLevel = (int)(Math.abs(Math.sin(lastX)) * 100);
             String signalStrength = signalLevel > 70 ? "Strong" : signalLevel > 40 ? "Medium" : "Weak";

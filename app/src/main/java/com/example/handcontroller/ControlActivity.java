@@ -14,6 +14,8 @@ public class ControlActivity extends AppCompatActivity {
     private TextView[] motorValues;
     private MaterialButton saveButton;
     private MaterialButton resetButton;
+    private MaterialButton exerciseInfoButton ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class ControlActivity extends AppCompatActivity {
 
         saveButton = findViewById(R.id.saveButton);
         resetButton = findViewById(R.id.resetButton);
+        exerciseInfoButton= findViewById(R.id.exerciseInfoButton);
     }
 
     private void setupMotorControls() {
@@ -69,6 +72,7 @@ public class ControlActivity extends AppCompatActivity {
     private void setupButtons() {
         saveButton.setOnClickListener(v -> saveMotorPositions());
         resetButton.setOnClickListener(v -> resetMotorPositions());
+        exerciseInfoButton.setOnClickListener(v -> showExerciseInfo());
     }
 
     private void updateMotorValue(int motorIndex, int value) {
@@ -96,6 +100,14 @@ public class ControlActivity extends AppCompatActivity {
             motorSeekBars[i].setProgress(0);
             updateMotorValue(i, 0);
         }
+    }
+    private void showExerciseInfo() {
+        MarkdownDialog dialog = new MarkdownDialog(
+                this,
+                getString(R.string.exercise_info_title),
+                getString(R.string.exercise_info_content)
+        );
+        dialog.show();
     }
 
     private void setupBottomNavigation() {
