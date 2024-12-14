@@ -39,6 +39,13 @@ import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.DefaultLabelFormatter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothGatt;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.le.BluetoothLeScanner;
+import android.app.AlertDialog;
+import android.widget.ArrayAdapter;
+import java.util.ArrayList;
 
 
 import java.util.Locale;
@@ -64,6 +71,9 @@ public class MainActivity extends AppCompatActivity {
     // Bluetooth Service
     private BluetoothService bluetoothService;
     private boolean serviceBound = false;
+    private static final long SCAN_PERIOD = 10000; // 10 seconds
+    private ArrayList<BluetoothDevice> scannedDevices;
+    private ArrayAdapter<String> deviceListAdapter;
 
     // Random for demo data
     private final Random random = new Random();
@@ -135,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
         configureGraph(graphSensor2, seriesSensor2, Color.GREEN, "EMG Signal 2");
     }
 
-     private void configureGraph(GraphView graph, LineGraphSeries<DataPoint> series, int color, String title) {
+    private void configureGraph(GraphView graph, LineGraphSeries<DataPoint> series, int color, String title) {
         // Series configuration
         series.setColor(color);
         series.setThickness(3);
@@ -236,7 +246,6 @@ public class MainActivity extends AppCompatActivity {
     private void setupBluetoothCallbacks() {
         if (bluetoothService != null) {
             bluetoothService.setOnDataReceivedListener((data, length) -> {
-                // Parse the received data
                 double[] values = bluetoothService.parseEMGData(data);
                 if (values.length >= 2) {
                     addDataPoint(values[0], values[1]);
@@ -247,15 +256,22 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onStateChanged(int state) {
                     updateConnectionState(state);
+                    if (state == BluetoothService.STATE_CONNECTED) {
+                        stopDataUpdates(); // Stop demo data when connected
+                    } else if (state == BluetoothService.STATE_NONE) {
+                        startDataUpdates(); // Restart demo data when disconnected
+                    }
                 }
 
                 @Override
                 public void onConnectionError(String message) {
                     showError(message);
+                    startDataUpdates(); // Restart demo data on error
                 }
             });
         }
     }
+
 
     private void startDataUpdates() {
         updateDataRunnable = new Runnable() {
@@ -270,6 +286,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         mainHandler.post(updateDataRunnable);
+    }
+    private void stopDataUpdates() {
+        mainHandler.removeCallbacks(updateDataRunnable);
     }
 
     private void generateDemoData() {
@@ -322,56 +341,82 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateStatus() {
-        if (bluetoothService != null && bluetoothService.isConnected()) {
-            // Real device status
-            signalStrengthText.setText(getString(R.string.signal_strength, "Strong"));
-            connectionStatusText.setText(R.string.connected);
-            connectionStatusText.setTextColor(Color.GREEN);
-            connectButton.setText(R.string.disconnect);
-        } else {
-            // Demo status
-
-            int signalLevel = (int)(Math.abs(Math.sin(lastX)) * 100);
-            String signalStrength = signalLevel > 70 ? "Strong" : signalLevel > 40 ? "Medium" : "Weak";
-            signalStrengthText.setText(getString(R.string.signal_strength, signalStrength));
-
-            connectionStatusText.setText(R.string.disconnected);
-            connectionStatusText.setTextColor(Color.RED);
-            connectButton.setText(R.string.connect_to_bluetooth);
+        try {
+            if (bluetoothService != null && bluetoothService.isConnected()) {
+                signalStrengthText.setText(getString(R.string.signal_strength, "Strong"));
+                connectionStatusText.setText(R.string.connected);
+                connectionStatusText.setTextColor(Color.GREEN);
+                connectButton.setText(R.string.disconnect);
+            } else {
+                int signalLevel = (int)(Math.abs(Math.sin(lastX)) * 100);
+                String signalStrength = signalLevel > 70 ? "Strong" : signalLevel > 40 ? "Medium" : "Weak";
+                signalStrengthText.setText(getString(R.string.signal_strength, signalStrength));
+                connectionStatusText.setText(R.string.disconnected);
+                connectionStatusText.setTextColor(Color.RED);
+                connectButton.setText(R.string.connect_to_bluetooth);
+            }
+        } catch (SecurityException e) {
+            Log.e(TAG, "Security Exception while updating status: " + e.getMessage());
+            showError("Permission denied: Unable to update connection status");
         }
     }
+
 
     private void attemptConnection() {
-        if (bluetoothService != null) {
-            if (bluetoothService.isConnected()) {
-                // Disconnect if connected
-                bluetoothService.closeConnection();
-                updateConnectionState(BluetoothService.STATE_NONE);
-            } else {
-                // Connect if disconnected
-                if (checkAndRequestPermissions()) {
-                    connectToDevice();
+        try {
+            if (bluetoothService != null) {
+                if (bluetoothService.isConnected()) {
+                    bluetoothService.closeConnection();
+                    updateConnectionState(BluetoothService.STATE_NONE);
+                    startDataUpdates();
+                } else {
+                    if (checkAndRequestPermissions()) {
+                        connectToDevice();
+                    }
                 }
             }
+        } catch (SecurityException e) {
+            Log.e(TAG, "Security Exception during connection attempt: " + e.getMessage());
+            showError("Permission denied: Unable to manage connection");
         }
     }
 
+
     private boolean checkAndRequestPermissions() {
+        String[] requiredPermissions;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            boolean hasPermissions = hasPermission(Manifest.permission.BLUETOOTH_CONNECT) &&
-                    hasPermission(Manifest.permission.BLUETOOTH_SCAN);
-            if (!hasPermissions) {
-                ActivityCompat.requestPermissions(this,
-                        new String[]{
-                                Manifest.permission.BLUETOOTH_CONNECT,
-                                Manifest.permission.BLUETOOTH_SCAN
-                        },
-                        PERMISSION_REQUEST_CODE);
-                return false;
+            requiredPermissions = new String[]{
+                    Manifest.permission.BLUETOOTH_SCAN,
+                    Manifest.permission.BLUETOOTH_CONNECT,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        } else {
+            requiredPermissions = new String[]{
+                    Manifest.permission.BLUETOOTH,
+                    Manifest.permission.BLUETOOTH_ADMIN,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+            };
+        }
+
+        ArrayList<String> missingPermissions = new ArrayList<>();
+        for (String permission : requiredPermissions) {
+            if (ContextCompat.checkSelfPermission(this, permission)
+                    != PackageManager.PERMISSION_GRANTED) {
+                missingPermissions.add(permission);
             }
         }
+
+        if (!missingPermissions.isEmpty()) {
+            ActivityCompat.requestPermissions(this,
+                    missingPermissions.toArray(new String[0]),
+                    PERMISSION_REQUEST_CODE);
+            return false;
+        }
+
         return true;
     }
+
+
 
     private static final int PERMISSION_REQUEST_CODE = 100;
 
@@ -381,16 +426,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void connectToDevice() {
         if (bluetoothService != null) {
-            // You would typically show a device selection dialog here
-            // For now, we'll just try to connect to the last known device
-            BluetoothDevice device = bluetoothService.getCurrentDevice();
-            if (device != null) {
-                bluetoothService.connect(device);
-            } else {
-                showError("No paired device found");
-            }
+            showDeviceSelectionDialog();
         }
     }
+
 
     private void updateConnectionState(int state) {
         runOnUiThread(() -> {
@@ -431,16 +470,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            boolean allPermissionsGranted = true;
+            for (int result : grantResults) {
+                if (result != PackageManager.PERMISSION_GRANTED) {
+                    allPermissionsGranted = false;
+                    break;
+                }
+            }
+
+            if (allPermissionsGranted) {
                 connectToDevice();
             } else {
-                showError("Permission denied");
+                showError("Required permissions not granted");
             }
         }
     }
+
 
     @Override
     protected void onStart() {
@@ -468,4 +517,83 @@ public class MainActivity extends AppCompatActivity {
             serviceBound = false;
         }
     }
+    private void showDeviceSelectionDialog() {
+        // First check for necessary permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            // Request permissions if not granted
+            ActivityCompat.requestPermissions(this,
+                    new String[]{
+                            Manifest.permission.BLUETOOTH_SCAN,
+                            Manifest.permission.BLUETOOTH_CONNECT
+                    },
+                    PERMISSION_REQUEST_CODE);
+            return;
+        }
+
+        stopDataUpdates();
+        scannedDevices = new ArrayList<>();
+        deviceListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Device");
+        builder.setAdapter(deviceListAdapter, (dialog, which) -> {
+            BluetoothDevice device = scannedDevices.get(which);
+            try {
+                bluetoothService.stopScan();
+                bluetoothService.connect(device);
+            } catch (SecurityException e) {
+                Log.e(TAG, "Security Exception: " + e.getMessage());
+                showError("Permission denied: Unable to connect to device");
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        if (bluetoothService != null) {
+            bluetoothService.setOnDeviceFoundListener(device -> {
+                try {
+                    if (!scannedDevices.contains(device)) {
+                        scannedDevices.add(device);
+                        String deviceName = device.getName();
+                        if (deviceName == null) deviceName = "Unknown Device";
+                        String deviceInfo = deviceName + " (" + device.getAddress() + ")";
+
+                        final String finalDeviceInfo = deviceInfo;
+                        runOnUiThread(() -> deviceListAdapter.add(finalDeviceInfo));
+                    }
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Security Exception while accessing device info: " + e.getMessage());
+                    showError("Permission denied: Unable to access device information");
+                }
+            });
+
+            try {
+                bluetoothService.startScan();
+            } catch (SecurityException e) {
+                Log.e(TAG, "Security Exception while starting scan: " + e.getMessage());
+                showError("Permission denied: Unable to start scanning");
+                dialog.dismiss();
+                return;
+            }
+
+            new Handler().postDelayed(() -> {
+                try {
+                    bluetoothService.stopScan();
+                    if (deviceListAdapter.getCount() == 0) {
+                        runOnUiThread(() -> {
+                            dialog.dismiss();
+                            showError("No devices found");
+                        });
+                    }
+                } catch (SecurityException e) {
+                    Log.e(TAG, "Security Exception while stopping scan: " + e.getMessage());
+                    showError("Permission denied: Unable to stop scanning");
+                }
+            }, SCAN_PERIOD);
+        }
+    }
+
+
 }
