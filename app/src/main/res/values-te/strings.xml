@@ -21,10 +21,10 @@
     <string name="malayalam">మలయాళం</string>
 
     <!-- Motor Control -->
-    <string name="motor_control">మోటార్ నియంత్రణ</string>
-    <string name="motor_1">మోటార్ 1</string>
-    <string name="motor_2">మోటార్ 2</string>
-    <string name="motor_3">మోటార్ 3</string>
+    <string name="motorcontrol">మోటార్ నియంత్రణ</string>
+    <string name="motor1">మోటార్ 1</string>
+    <string name="motor2">మోటార్ 2</string>
+    <string name="motor3">మోటార్ 3</string>
 
     <!-- Control Activity -->
     <string name="status">స్థితి</string>
