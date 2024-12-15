@@ -16,13 +16,11 @@ import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-
-import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-
 import java.util.UUID;
 
 public class BluetoothService extends Service {
+
     private static final String TAG = "BluetoothService";
 
     // Connection states
@@ -30,9 +28,19 @@ public class BluetoothService extends Service {
     public static final int STATE_CONNECTING = 1;
     public static final int STATE_CONNECTED = 2;
 
-    // UUIDs for BLE service and characteristic
-    private static final UUID SERVICE_UUID = UUID.fromString("4fafc201-1fb5-459e-8fcc-c5c9c331914b");
-    private static final UUID CHARACTERISTIC_UUID = UUID.fromString("beb5483e-36e1-4688-b7f5-ea07361b26a8");
+    // Command types
+    private static final String CMD_MOTOR = "M";
+    private static final String CMD_SENSOR = "S";
+    private static final String CMD_CALIBRATE = "C";
+    private static final String CMD_STOP = "STOP";
+
+    // UUIDs for BLE service and characteristic - Update these with your device's UUIDs
+    private static final UUID SERVICE_UUID = UUID.fromString(
+        "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
+    );
+    private static final UUID CHARACTERISTIC_UUID = UUID.fromString(
+        "beb5483e-36e1-4688-b7f5-ea07361b26a8"
+    );
 
     private BluetoothManager bluetoothManager;
     private BluetoothAdapter bluetoothAdapter;
@@ -40,6 +48,7 @@ public class BluetoothService extends Service {
     private BluetoothGatt bluetoothGatt;
     private Handler handler;
     private int connectionState;
+    private static BluetoothService instance;
 
     // Callbacks
     private OnConnectionStateChangeListener stateChangeListener;
@@ -49,18 +58,26 @@ public class BluetoothService extends Service {
     // Binder
     private final IBinder binder = new LocalBinder();
 
-    // Required default constructor
-    public BluetoothService() {
-        // Initialize any non-context dependent variables here
-        connectionState = STATE_NONE;
-        handler = new Handler();
+    public class LocalBinder extends Binder {
+
+        public BluetoothService getService() {
+            return BluetoothService.this;
+        }
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        // Initialize context-dependent variables here
-        bluetoothManager = (BluetoothManager) getSystemService(BLUETOOTH_SERVICE);
+        instance = this;
+        connectionState = STATE_NONE;
+        handler = new Handler();
+        initializeBluetooth();
+    }
+
+    private void initializeBluetooth() {
+        bluetoothManager = (BluetoothManager) getSystemService(
+            BLUETOOTH_SERVICE
+        );
         if (bluetoothManager != null) {
             bluetoothAdapter = bluetoothManager.getAdapter();
             if (bluetoothAdapter != null) {
@@ -69,13 +86,10 @@ public class BluetoothService extends Service {
         }
     }
 
-    public class LocalBinder extends Binder {
-        public BluetoothService getService() {
-            return BluetoothService.this;
-        }
+    public static BluetoothService getInstance() {
+        return instance;
     }
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return binder;
@@ -83,19 +97,146 @@ public class BluetoothService extends Service {
 
     // Scanning methods
     public void startScan() {
-        if (bluetoothLeScanner != null && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (
+            bluetoothLeScanner != null &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.BLUETOOTH_SCAN
+            ) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
             bluetoothLeScanner.startScan(scanCallback);
         }
     }
 
     public void stopScan() {
-        if (bluetoothLeScanner != null && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_SCAN)
-                == PackageManager.PERMISSION_GRANTED) {
+        if (
+            bluetoothLeScanner != null &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.BLUETOOTH_SCAN
+            ) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
             bluetoothLeScanner.stopScan(scanCallback);
         }
     }
 
+    // Connection methods
+    public void connect(BluetoothDevice device) {
+        if (
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.BLUETOOTH_CONNECT
+            ) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            connectionState = STATE_CONNECTING;
+            notifyStateChange();
+            bluetoothGatt = device.connectGatt(this, false, gattCallback);
+        }
+    }
+
+    public void closeConnection() {
+        if (bluetoothGatt != null) {
+            if (
+                ActivityCompat.checkSelfPermission(
+                    this,
+                    android.Manifest.permission.BLUETOOTH_CONNECT
+                ) ==
+                PackageManager.PERMISSION_GRANTED
+            ) {
+                bluetoothGatt.close();
+                bluetoothGatt = null;
+            }
+        }
+        connectionState = STATE_NONE;
+        notifyStateChange();
+    }
+
+    // Command sending methods
+    public void sendMotorCommand(int motorId, int position) {
+        if (!isConnected()) return;
+
+        try {
+            String command = String.format(
+                "%s%d:%d",
+                CMD_MOTOR,
+                motorId,
+                position
+            );
+            sendData(command.getBytes());
+        } catch (Exception e) {
+            Log.e(TAG, "Error sending motor command: " + e.getMessage());
+            notifyError("Failed to send motor command: " + e.getMessage());
+        }
+    }
+
+    public void sendSensorConfig(int sensorId, int sensitivity) {
+        if (!isConnected()) return;
+
+        try {
+            String command = String.format(
+                "%s%d:%d",
+                CMD_SENSOR,
+                sensorId,
+                sensitivity
+            );
+            sendData(command.getBytes());
+        } catch (Exception e) {
+            Log.e(TAG, "Error sending sensor config: " + e.getMessage());
+            notifyError("Failed to send sensor config: " + e.getMessage());
+        }
+    }
+
+    public void sendCalibrationCommand(String type) {
+        if (!isConnected()) return;
+
+        try {
+            String command = String.format("%s:%s", CMD_CALIBRATE, type);
+            sendData(command.getBytes());
+        } catch (Exception e) {
+            Log.e(TAG, "Error sending calibration command: " + e.getMessage());
+            notifyError(
+                "Failed to send calibration command: " + e.getMessage()
+            );
+        }
+    }
+
+    public void sendEmergencyStop() {
+        if (!isConnected()) return;
+
+        try {
+            sendData(CMD_STOP.getBytes());
+        } catch (Exception e) {
+            Log.e(TAG, "Error sending emergency stop: " + e.getMessage());
+            notifyError("Failed to send emergency stop: " + e.getMessage());
+        }
+    }
+
+    private void sendData(byte[] data) {
+        if (
+            bluetoothGatt == null ||
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.BLUETOOTH_CONNECT
+            ) !=
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            return;
+        }
+
+        BluetoothGattCharacteristic characteristic = bluetoothGatt
+            .getService(SERVICE_UUID)
+            .getCharacteristic(CHARACTERISTIC_UUID);
+
+        if (characteristic != null) {
+            characteristic.setValue(data);
+            bluetoothGatt.writeCharacteristic(characteristic);
+        }
+    }
+
+    // Callbacks
     private final ScanCallback scanCallback = new ScanCallback() {
         @Override
         public void onScanResult(int callbackType, ScanResult result) {
@@ -105,83 +246,92 @@ public class BluetoothService extends Service {
         }
     };
 
-    // Connection methods
-    public void connect(BluetoothDevice device) {
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT)
-                == PackageManager.PERMISSION_GRANTED) {
-            connectionState = STATE_CONNECTING;
-            notifyStateChange();
-            bluetoothGatt = device.connectGatt(this, false, gattCallback);
-        }
-    }
-
-    public void closeConnection() {
-        if (bluetoothGatt != null) {
-            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT)
-                    == PackageManager.PERMISSION_GRANTED) {
-                bluetoothGatt.close();
-                bluetoothGatt = null;
-            }
-        }
-        connectionState = STATE_NONE;
-        notifyStateChange();
-    }
-
-    private final BluetoothGattCallback gattCallback = new BluetoothGattCallback() {
-        @Override
-        public void onConnectionStateChange(BluetoothGatt gatt, int status, int newState) {
-            if (newState == BluetoothGatt.STATE_CONNECTED) {
-                connectionState = STATE_CONNECTED;
-                notifyStateChange();
-                if (ActivityCompat.checkSelfPermission(BluetoothService.this,
-                        android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-                    gatt.discoverServices();
+    private final BluetoothGattCallback gattCallback =
+        new BluetoothGattCallback() {
+            @Override
+            public void onConnectionStateChange(
+                BluetoothGatt gatt,
+                int status,
+                int newState
+            ) {
+                if (newState == BluetoothGatt.STATE_CONNECTED) {
+                    connectionState = STATE_CONNECTED;
+                    notifyStateChange();
+                    if (
+                        ActivityCompat.checkSelfPermission(
+                            BluetoothService.this,
+                            android.Manifest.permission.BLUETOOTH_CONNECT
+                        ) ==
+                        PackageManager.PERMISSION_GRANTED
+                    ) {
+                        gatt.discoverServices();
+                    }
+                } else if (newState == BluetoothGatt.STATE_DISCONNECTED) {
+                    connectionState = STATE_NONE;
+                    notifyStateChange();
                 }
-            } else if (newState == BluetoothGatt.STATE_DISCONNECTED) {
-                connectionState = STATE_NONE;
-                notifyStateChange();
             }
-        }
 
-        @Override
-        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
-            if (status == BluetoothGatt.GATT_SUCCESS) {
-                // Enable notifications for the characteristic
-                enableCharacteristicNotification();
+            @Override
+            public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+                if (status == BluetoothGatt.GATT_SUCCESS) {
+                    enableCharacteristicNotification();
+                }
             }
-        }
 
-        @Override
-        public void onCharacteristicChanged(BluetoothGatt gatt,
-                                            BluetoothGattCharacteristic characteristic) {
-            if (CHARACTERISTIC_UUID.equals(characteristic.getUuid())) {
-                byte[] data = characteristic.getValue();
-                notifyDataReceived(data);
+            @Override
+            public void onCharacteristicChanged(
+                BluetoothGatt gatt,
+                BluetoothGattCharacteristic characteristic
+            ) {
+                if (CHARACTERISTIC_UUID.equals(characteristic.getUuid())) {
+                    byte[] data = characteristic.getValue();
+                    notifyDataReceived(data);
+                }
             }
-        }
-    };
+        };
 
     private void enableCharacteristicNotification() {
-        if (bluetoothGatt != null && ActivityCompat.checkSelfPermission(this,
-                android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-            BluetoothGattCharacteristic characteristic =
-                    bluetoothGatt.getService(SERVICE_UUID).getCharacteristic(CHARACTERISTIC_UUID);
+        if (
+            bluetoothGatt != null &&
+            ActivityCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.BLUETOOTH_CONNECT
+            ) ==
+            PackageManager.PERMISSION_GRANTED
+        ) {
+            BluetoothGattCharacteristic characteristic = bluetoothGatt
+                .getService(SERVICE_UUID)
+                .getCharacteristic(CHARACTERISTIC_UUID);
             if (characteristic != null) {
-                bluetoothGatt.setCharacteristicNotification(characteristic, true);
+                bluetoothGatt.setCharacteristicNotification(
+                    characteristic,
+                    true
+                );
             }
         }
     }
 
-    // Helper methods
+    // Notification methods
     private void notifyStateChange() {
         if (stateChangeListener != null) {
-            handler.post(() -> stateChangeListener.onStateChanged(connectionState));
+            handler.post(() ->
+                stateChangeListener.onStateChanged(connectionState)
+            );
         }
     }
 
     private void notifyDataReceived(byte[] data) {
         if (dataReceivedListener != null) {
-            handler.post(() -> dataReceivedListener.onDataReceived(data, data.length));
+            handler.post(() ->
+                dataReceivedListener.onDataReceived(data, data.length)
+            );
+        }
+    }
+
+    private void notifyError(String message) {
+        if (stateChangeListener != null) {
+            handler.post(() -> stateChangeListener.onConnectionError(message));
         }
     }
 
@@ -194,7 +344,7 @@ public class BluetoothService extends Service {
         return bluetoothGatt != null ? bluetoothGatt.getDevice() : null;
     }
 
-    // Data parsing method
+    // Data parsing
     public double[] parseEMGData(byte[] data) {
         double[] values = new double[2];
         if (data != null && data.length >= 8) {
@@ -204,7 +354,7 @@ public class BluetoothService extends Service {
         return values;
     }
 
-    // Interfaces
+    // Listener interfaces
     public interface OnConnectionStateChangeListener {
         void onStateChanged(int state);
         void onConnectionError(String message);
@@ -219,7 +369,9 @@ public class BluetoothService extends Service {
     }
 
     // Setter methods for listeners
-    public void setOnConnectionStateChangeListener(OnConnectionStateChangeListener listener) {
+    public void setOnConnectionStateChangeListener(
+        OnConnectionStateChangeListener listener
+    ) {
         this.stateChangeListener = listener;
     }
 
@@ -236,5 +388,6 @@ public class BluetoothService extends Service {
         super.onDestroy();
         closeConnection();
         handler.removeCallbacksAndMessages(null);
+        instance = null;
     }
 }
