@@ -30,9 +30,6 @@ public class ControlActivity extends AppCompatActivity {
     private MaterialButton resetButton;
     private MaterialButton exerciseInfoButton;
     private MaterialButton emergencyStopButton;
-    private MaterialButton presetOpenButton;
-    private MaterialButton presetCloseButton;
-    private MaterialButton presetMidButton;
 
     // Constants
     private static final int NUM_MOTORS = 3;
@@ -44,28 +41,23 @@ public class ControlActivity extends AppCompatActivity {
     private boolean serviceBound = false;
 
     // Service Connection
-    private final ServiceConnection serviceConnection =
-        new ServiceConnection() {
-            @Override
-            public void onServiceConnected(
-                ComponentName name,
-                IBinder service
-            ) {
-                BluetoothService.LocalBinder binder =
-                    (BluetoothService.LocalBinder) service;
-                bluetoothService = binder.getService();
-                serviceBound = true;
-                updateConnectionStatus();
-                loadSavedPositions();
-            }
+    private final ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            bluetoothService = binder.getService();
+            serviceBound = true;
+            updateConnectionStatus();
+            loadSavedPositions();
+        }
 
-            @Override
-            public void onServiceDisconnected(ComponentName name) {
-                serviceBound = false;
-                bluetoothService = null;
-                updateConnectionStatus();
-            }
-        };
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            serviceBound = false;
+            bluetoothService = null;
+            updateConnectionStatus();
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,9 +91,6 @@ public class ControlActivity extends AppCompatActivity {
         resetButton = findViewById(R.id.resetButton);
         exerciseInfoButton = findViewById(R.id.exerciseInfoButton);
         emergencyStopButton = findViewById(R.id.emergencyStop);
-        presetOpenButton = findViewById(R.id.presetOpen);
-        presetCloseButton = findViewById(R.id.presetClose);
-        presetMidButton = findViewById(R.id.presetMid);
 
         // Set max values for seek bars
         for (SeekBar seekBar : motorSeekBars) {
@@ -113,28 +102,21 @@ public class ControlActivity extends AppCompatActivity {
         for (int i = 0; i < motorSeekBars.length; i++) {
             final int motorIndex = i;
             motorSeekBars[i].setOnSeekBarChangeListener(
-                    new SeekBar.OnSeekBarChangeListener() {
-                        @Override
-                        public void onProgressChanged(
-                            SeekBar seekBar,
-                            int progress,
-                            boolean fromUser
-                        ) {
-                            updateMotorValue(motorIndex, progress);
-                        }
-
-                        @Override
-                        public void onStartTrackingTouch(SeekBar seekBar) {}
-
-                        @Override
-                        public void onStopTrackingTouch(SeekBar seekBar) {
-                            sendMotorValueToHardware(
-                                motorIndex,
-                                seekBar.getProgress()
-                            );
-                        }
+                new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        updateMotorValue(motorIndex, progress);
                     }
-                );
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+                        sendMotorValueToHardware(motorIndex, seekBar.getProgress());
+                    }
+                }
+            );
         }
     }
 
@@ -143,16 +125,10 @@ public class ControlActivity extends AppCompatActivity {
         resetButton.setOnClickListener(v -> resetMotorPositions());
         exerciseInfoButton.setOnClickListener(v -> showExerciseInfo());
         emergencyStopButton.setOnClickListener(v -> handleEmergencyStop());
-
-        presetOpenButton.setOnClickListener(v -> setPresetPosition("OPEN"));
-        presetCloseButton.setOnClickListener(v -> setPresetPosition("CLOSE"));
-        presetMidButton.setOnClickListener(v -> setPresetPosition("MID"));
     }
 
     private void setupBottomNavigation() {
-        BottomNavigationView bottomNavigationView = findViewById(
-            R.id.bottom_navigation
-        );
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.control);
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -190,10 +166,7 @@ public class ControlActivity extends AppCompatActivity {
     }
 
     private void saveMotorPositions() {
-        SharedPreferences.Editor editor = getSharedPreferences(
-            PREFS_NAME,
-            MODE_PRIVATE
-        ).edit();
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
         for (int i = 0; i < motorSeekBars.length; i++) {
             editor.putInt("motor" + i, motorSeekBars[i].getProgress());
         }
@@ -202,10 +175,7 @@ public class ControlActivity extends AppCompatActivity {
     }
 
     private void loadSavedPositions() {
-        SharedPreferences prefs = getSharedPreferences(
-            PREFS_NAME,
-            MODE_PRIVATE
-        );
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         for (int i = 0; i < motorSeekBars.length; i++) {
             int savedPosition = prefs.getInt("motor" + i, 0);
             motorSeekBars[i].setProgress(savedPosition);
@@ -221,40 +191,11 @@ public class ControlActivity extends AppCompatActivity {
         }
     }
 
-    private void setPresetPosition(String preset) {
-        if (!checkConnection()) return;
-
-        int targetPosition;
-        switch (preset) {
-            case "OPEN":
-                targetPosition = MAX_ANGLE;
-                break;
-            case "CLOSE":
-                targetPosition = 0;
-                break;
-            case "MID":
-                targetPosition = MAX_ANGLE / 2;
-                break;
-            default:
-                return;
-        }
-
-        for (int i = 0; i < motorSeekBars.length; i++) {
-            motorSeekBars[i].setProgress(targetPosition);
-            updateMotorValue(i, targetPosition);
-            sendMotorValueToHardware(i, targetPosition);
-        }
-    }
-
     private void handleEmergencyStop() {
         if (bluetoothService != null) {
             bluetoothService.sendEmergencyStop();
             resetMotorPositions();
-            Toast.makeText(
-                this,
-                "Emergency Stop Activated",
-                Toast.LENGTH_SHORT
-            ).show();
+            Toast.makeText(this, "Emergency Stop Activated", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -286,9 +227,7 @@ public class ControlActivity extends AppCompatActivity {
     }
 
     private void showError(String message) {
-        runOnUiThread(() ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-        );
+        runOnUiThread(() -> Toast.makeText(this, message, Toast.LENGTH_SHORT).show());
     }
 
     @Override

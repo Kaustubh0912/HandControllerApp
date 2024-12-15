@@ -34,15 +34,6 @@ public class SettingsActivity extends AppCompatActivity {
     private TextView selectLanguage;
     private MaterialButton autoCalibrateButton;
     private TextView calibrationInstructions;
-    private MaterialButton selectDelay;
-    private MaterialButton selectActuationType;
-    private TextView currentDelay;
-    private TextView currentActuation;
-
-    // Constants
-    private static final int MIN_DELAY = 500;
-    private static final int MAX_DELAY = 3000;
-    private static final int DELAY_STEP = 500;
 
     // Managers and Services
     private InstructionManager instructionManager;
@@ -82,25 +73,17 @@ public class SettingsActivity extends AppCompatActivity {
         setupListeners();
         bindBluetoothService();
         instructionManager = InstructionManager.getInstance(this);
-        loadSavedPreferences();
     }
 
     private void initializeViews() {
         selectLanguage = findViewById(R.id.selectLanguage);
         autoCalibrateButton = findViewById(R.id.autocalibrate);
         calibrationInstructions = findViewById(R.id.calibrationInstructions);
-        selectDelay = findViewById(R.id.selectDelay);
-        selectActuationType = findViewById(R.id.selectActuationType);
-        currentDelay = findViewById(R.id.currentDelay);
-        currentActuation = findViewById(R.id.currentActuation);
     }
 
     private void setupListeners() {
         selectLanguage.setOnClickListener(v -> openLanguageMenu(v));
         autoCalibrateButton.setOnClickListener(v -> startCalibration());
-        selectDelay.setOnClickListener(v -> openDelayMenu(v));
-        selectActuationType.setOnClickListener(v -> openActuationMenu(v));
-
         setupBottomNavigation();
     }
 
@@ -229,18 +212,6 @@ public class SettingsActivity extends AppCompatActivity {
         unregisterForContextMenu(selectLanguage);
     }
 
-    private void openDelayMenu(View v) {
-        registerForContextMenu(selectDelay);
-        openContextMenu(selectDelay);
-        unregisterForContextMenu(selectDelay);
-    }
-
-    private void openActuationMenu(View v) {
-        registerForContextMenu(selectActuationType);
-        openContextMenu(selectActuationType);
-        unregisterForContextMenu(selectActuationType);
-    }
-
     @Override
     public void onCreateContextMenu(
         android.view.ContextMenu menu,
@@ -256,27 +227,13 @@ public class SettingsActivity extends AppCompatActivity {
             menu.add(0, 3, 2, getString(R.string.tamil));
             menu.add(0, 4, 3, getString(R.string.telugu));
             menu.add(0, 5, 4, getString(R.string.malayalam));
-        } else if (v.getId() == R.id.selectDelay) {
-            menu.setHeaderTitle("Select Delay");
-            for (
-                int delay = MIN_DELAY;
-                delay <= MAX_DELAY;
-                delay += DELAY_STEP
-            ) {
-                menu.add(1, delay, 0, delay + " ms");
-            }
-        } else if (v.getId() == R.id.selectActuationType) {
-            menu.setHeaderTitle("Select Actuation Type");
-            menu.add(2, 1, 0, "Momentary");
-            menu.add(2, 2, 1, "Latching");
         }
     }
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
         if (item.getGroupId() == 0) {
-            // Language selection
-            String languageCode = "en"; // Default to English
+            String languageCode;
             switch (item.getItemId()) {
                 case 1:
                     languageCode = "en"; // English
@@ -298,20 +255,7 @@ public class SettingsActivity extends AppCompatActivity {
             }
             changeLanguage(languageCode);
             return true;
-        } else if (item.getGroupId() == 1) {
-            // Delay selection
-            int delay = item.getItemId();
-            saveDelaySetting(delay);
-            return true;
-        } else if (item.getGroupId() == 2) {
-            // Actuation type selection
-            String actuationType = item.getItemId() == 1
-                ? "Momentary"
-                : "Latching";
-            saveActuationType(actuationType);
-            return true;
         }
-
         return super.onContextItemSelected(item);
     }
 
@@ -356,60 +300,6 @@ public class SettingsActivity extends AppCompatActivity {
         Configuration config = resources.getConfiguration();
         config.setLocale(locale);
         resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
-
-    private void loadSavedPreferences() {
-        SharedPreferences preferences = getSharedPreferences(
-            PREFS_NAME,
-            MODE_PRIVATE
-        );
-        int delay = preferences.getInt("sensor_delay", 500);
-        String actuationType = preferences.getString(
-            "actuation_type",
-            "Momentary"
-        );
-
-        currentDelay.setText(
-            String.format(getString(R.string.current_delay), delay)
-        );
-        currentActuation.setText(actuationType);
-    }
-
-    private void saveDelaySetting(int delay) {
-        SharedPreferences preferences = getSharedPreferences(
-            PREFS_NAME,
-            MODE_PRIVATE
-        );
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putInt("sensor_delay", delay);
-        editor.apply();
-
-        currentDelay.setText(
-            String.format(getString(R.string.current_delay), delay)
-        );
-
-        if (bluetoothService != null && bluetoothService.isConnected()) {
-            bluetoothService.sendSensorConfig(0, delay);
-        }
-    }
-
-    private void saveActuationType(String actuationType) {
-        SharedPreferences preferences = getSharedPreferences(
-            PREFS_NAME,
-            MODE_PRIVATE
-        );
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("actuation_type", actuationType);
-        editor.apply();
-
-        currentActuation.setText(actuationType);
-
-        if (bluetoothService != null && bluetoothService.isConnected()) {
-            bluetoothService.sendSensorConfig(
-                1,
-                actuationType.equals("Momentary") ? 0 : 1
-            );
-        }
     }
 
     private void updateConnectionState(int state) {
