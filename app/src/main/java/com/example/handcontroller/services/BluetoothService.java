@@ -172,23 +172,6 @@ public class BluetoothService extends Service {
         }
     }
 
-    public void sendSensorConfig(int sensorId, int sensitivity) {
-        if (!isConnected()) return;
-
-        try {
-            String command = String.format(
-                "%s%d:%d",
-                CMD_SENSOR,
-                sensorId,
-                sensitivity
-            );
-            sendData(command.getBytes());
-        } catch (Exception e) {
-            Log.e(TAG, "Error sending sensor config: " + e.getMessage());
-            notifyError("Failed to send sensor config: " + e.getMessage());
-        }
-    }
-
     public void sendCalibrationCommand(String type) {
         if (!isConnected()) return;
 
