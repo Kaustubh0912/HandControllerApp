@@ -14,10 +14,10 @@
     <string name="reset">റീസെറ്റ് ചെയ്യുക</string>
 
     <!-- Language Options -->
-    <string name="english">ഇംഗ്ലീഷ്</string>
-    <string name="hindi">ഹിന്ദി</string>
-    <string name="tamil">തമിഴ്</string>
-    <string name="telugu">തെലുങ്ക്</string>
+    <string name="english">English</string>
+    <string name="hindi">हिन्दी</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="telugu">తెలుగు</string>
     <string name="malayalam">മലയാളം</string>
 
     <!-- Motor Control -->
@@ -34,9 +34,6 @@
     <string name="disconnect">ഡിസ്കണക്റ്റ് ചെയ്യുക</string>
     <string name="emergency_stop">അവസര സ്റ്റോപ്പ്</string>
     <string name="presets">പ്രിസെറ്റുകൾ</string>
-    <string name="open">തുറക്കുക</string>
-    <string name="close">അടയ്ക്കുക</string>
-    <string name="mid">മധ്യം</string>
     <string name="battery_level">ബാറ്ററി: %1$s</string>
     <string name="signal_strength">സിഗ്നൽ: %1$s</string>
     <string name="connecting">കണക്റ്റുചെയ്യുന്നു...</string>
@@ -48,32 +45,7 @@
     <string name="select_actuation">ചലന തരം തിരഞ്ഞെടുക്കുക</string>
     <string name="current_delay">ഇപ്പോഴത്തെ വൈകിയ സമയം: %1$d മില്ലിസെക്കൻഡ്</string>
 
-    <!-- Exercises -->
-    <string name="exercises_to_improve_control">നിയന്ത്രണം മെച്ചപ്പെടുത്താൻ വ്യായാമങ്ങൾ</string>
-    <string name="exercise_info_title">നിയന്ത്രണത്തിനായി വ്യായാമങ്ങൾ</string>
-    <string name="exercise_info_content">## അടിസ്ഥാന വ്യായാമങ്ങൾ\n\n
-1. **വിരൽ ചലന വ്യായാമം**\n
-   - ഓരോ വിരലും വ്യത്യസ്തമായി ചലിപ്പിക്കുക\n
-   - ചെറുതും നിയന്ത്രിതവുമായ ചലനങ്ങൾ പരിശീലിക്കുക\n
-   - ഓരോ വിരലും 10 തവണ ആവർത്തിക്കുക\n\n
-2. **പിടുത്തം വർധിപ്പിക്കാൻ വ്യായാമം**\n
-   - താഴെപ്പറയുന്ന പിടുത്തങ്ങൾ പരിശീലിക്കുക:\n
-   - മൃദുവായ പിടുത്തം (കാഗിത് പിടിക്കുക)\n
-   - മിതമായ പിടുത്തം (വാട്ടർ ബോട്ടിൽ)\n
-   - ഉറച്ച പിടുത്തം (റബ്ബർ ബാൾ)\n\n
-3. **സൂക്ഷ്മ പ്രവർത്തനങ്ങൾ**\n
-   - ചെറുതായ വസ്തുക്കൾ എടുക്കുക\n
-   - ബ്ലോക്കുകൾ ചേർക്കുക\n
-   - എഴുതലും വരയ്ക്കലും പരിശീലിക്കുക\n\n
-## പ്രഗത്ഭ വ്യായാമങ്ങൾ\n\n
-1. **വേഗ നിയന്ത്രണം**\n
-   - ചലന വേഗത മാറുക\n
-   - വേഗതയും മന്ദഗതിയും പരിശീലിക്കുക\n
-   - സൗമ്യതയുള്ള മാറ്റങ്ങൾ ശ്രദ്ധിക്കുക\n\n
-2. **സമന്വയം**\n
-   - ചേർന്ന ചലനങ്ങൾ പരിശീലിക്കുക\n
-   - സാധാരണ കൈ ചലനങ്ങൾ മിറർ ചെയ്യുക\n
-   - ദിവസവും ചെയ്യേണ്ട പ്രവർത്തനങ്ങൾ പരിശീലിക്കുക</string>
+
 
     <!-- Language Options as String-Array -->
     <string-array name="language_options">

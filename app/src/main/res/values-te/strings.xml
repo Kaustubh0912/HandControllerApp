@@ -14,11 +14,11 @@
     <string name="reset">రీసెట్ చేయండి</string>
 
     <!-- Language Options -->
-    <string name="english">ఇంగ్లీష్</string>
-    <string name="hindi">హిందీ</string>
-    <string name="tamil">తమిళం</string>
+    <string name="english">English</string>
+    <string name="hindi">हिन्दी</string>
+    <string name="tamil">தமிழ்</string>
     <string name="telugu">తెలుగు</string>
-    <string name="malayalam">మలయాళం</string>
+    <string name="malayalam">മലയാളം</string>
 
     <!-- Motor Control -->
     <string name="motorcontrol">మోటార్ నియంత్రణ</string>
@@ -34,9 +34,6 @@
     <string name="disconnect">డిస్కనెక్ట్ చేయండి</string>
     <string name="emergency_stop">తక్షణ ఆపివేత</string>
     <string name="presets">ప్రీసెట్ పొజిషన్స్</string>
-    <string name="open">తెరవండి</string>
-    <string name="close">మూసివేయండి</string>
-    <string name="mid">మధ్య</string>
     <string name="battery_level">బ్యాటరీ: %1$s</string>
     <string name="signal_strength">సిగ్నల్: %1$s</string>
     <string name="connecting">కనెక్ట్ అవుతోంది...</string>
@@ -48,32 +45,6 @@
     <string name="select_actuation">క్రియాశీలత రకం ఎంచుకోండి</string>
     <string name="current_delay">ప్రస్తుత ఆలస్యం: %1$d మి.సె</string>
 
-    <!-- Exercises -->
-    <string name="exercises_to_improve_control">నియంత్రణ మెరుగుపరచడానికి వ్యాయామాలు</string>
-    <string name="exercise_info_title">నియంత్రణ మెరుగుదల కోసం వ్యాయామాలు</string>
-    <string name="exercise_info_content">## ప్రాథమిక వ్యాయామాలు\n\n
-1. **విరాళాల కదలిక వ్యాయామం**\n
-   - ఒక్కొక్క వేళ్లను వేరు చేసి కదపండి\n
-   - చిన్న, నియంత్రిత కదలికలు సాధన చేయండి\n
-   - ఒక్కొక్క వేళ్లను 10 సార్లు పునరావృతం చేయండి\n\n
-2. **పట్టుదల అభ్యాసం**\n
-   - ఈ క్రింది పట్టును సాధన చేయండి:\n
-   - తేలికపాటి పట్టు (కాగితం పట్టుకోవడం)\n
-   - మోస్తరు పట్టు (వాటర్ బాటిల్)\n
-   - గట్టి పట్టు (స్ట్రెస్ బాల్)\n\n
-3. **ఖచ్చితమైన పనులు**\n
-   - చిన్న వస్తువులను ఎత్తుకోండి\n
-   - బ్లాకులను కట్టండి\n
-   - వ్రాయడం లేదా చిత్రించడం సాధన చేయండి\n\n
-## ప్రगतిశీల వ్యాయామాలు\n\n
-1. **వేగ నియంత్రణ**\n
-   - కదలిక వేగాన్ని మార్చండి\n
-   - వేగంగా మరియు నెమ్మదిగా కదలికలను సాధన చేయండి\n
-   - సజావుగా మార్పులను పరిశీలించండి\n\n
-2. **సమన్వయం**\n
-   - కూర్చిన కదలికలను సాధన చేయండి\n
-   - సహజమైన చేతి కదలికలను మిర్రర్ చేయండి\n
-   - రోజువారీ పనులను సాధన చేయండి</string>
 
     <!-- Language Options as String-Array -->
     <string-array name="language_options">

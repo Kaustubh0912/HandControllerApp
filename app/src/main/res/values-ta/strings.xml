@@ -14,11 +14,11 @@
     <string name="reset">மீட்டமை</string>
 
     <!-- Language Options -->
-    <string name="english">ஆங்கிலம்</string>
-    <string name="hindi">இந்தி</string>
+    <string name="english">English</string>
+    <string name="hindi">हिन्दी</string>
     <string name="tamil">தமிழ்</string>
-    <string name="telugu">தெலுங்கு</string>
-    <string name="malayalam">மலையாளம்</string>
+    <string name="telugu">తెలుగు</string>
+    <string name="malayalam">മലയാളം</string>
 
     <!-- Motor Control -->
     <string name="motorcontrol">மோட்டார் கட்டுப்பாடு</string>
@@ -34,9 +34,6 @@
     <string name="disconnect">துண்டிக்க</string>
     <string name="emergency_stop">அவசர நிறுத்தம்</string>
     <string name="presets">முன்பயன்பாட்டு நிலைகள்</string>
-    <string name="open">திற</string>
-    <string name="close">மூடு</string>
-    <string name="mid">மத்திய</string>
     <string name="battery_level">மின்கலம்: %1$s</string>
     <string name="signal_strength">சிக்னல்: %1$s</string>
     <string name="connecting">இணைக்கப்படுகிறது...</string>
@@ -48,32 +45,7 @@
     <string name="select_actuation">நடைமுறை வகையைத் தேர்ந்தெடுக்கவும்</string>
     <string name="current_delay">தற்போதைய தாமதம்: %1$d மில்லி விநாடி</string>
 
-    <!-- Exercises -->
-    <string name="exercises_to_improve_control">கட்டுப்பாட்டை மேம்படுத்த உடற்பயிற்சிகள்</string>
-    <string name="exercise_info_title">கட்டுப்பாட்டை மேம்படுத்தும் உடற்பயிற்சிகள்</string>
-    <string name="exercise_info_content">## அடிப்படை உடற்பயிற்சிகள்\n\n
-1. **தனித்த நீக்கம் பயிற்சி**\n
-   - ஒவ்வொரு விரலையும் தனியாக இயக்க تمرיचிடம்\n
-   - சிறிய, கட்டுப்படுத்தப்பட்ட நகர்வுகளைப் பயிற்சி செய்யவும்\n
-   - ஒவ்வொரு விரலுக்கும் 10 முறை திரும்பவும் செய்யவும்\n\n
-2. **பிடிப்பு பயிற்சி**\n
-   - பின்வரும் பிடிப்பு வகைகளைப் பயிற்சி செய்யவும்:\n
-   - மெதுவான பிடிப்பு (காகிதம் பிடிக்கவும்)\n
-   - மிதமான பிடிப்பு (தண்ணீர் பாட்டில்)\n
-   - உறுதியான பிடிப்பு (உறையாப்பு பந்தம்)\n\n
-3. **துல்லிய செயல்கள்**\n
-   - சிறிய பொருட்களை எடுக்கவும்\n
-   - கட்டங்களை அடுக்கவும்\n
-   - எழுத அல்லது வரைதல் பயிற்சி செய்யவும்\n\n
-## மேம்பட்ட பயிற்சிகள்\n\n
-1. **வேகம் கட்டுப்பாடு**\n
-   - நகர்வு வேகத்தை மாறுக\n
-   - வேகமான மற்றும் மெதுவான நகர்வுகளைப் பயிற்சி செய்யவும்\n
-   - மென்மையான மாற்றங்களில் கவனம் செலுத்தவும்\n\n
-2. **ஒத்துழைப்பு**\n
-   - இணைந்த நகர்வுகளைப் பயிற்சி செய்யவும்\n
-   - இயல்பான கை நகர்வுகளை மிரர் செய்யவும்\n
-   - தினசரி செயல்களைப் பயிற்சி செய்யவும்</string>
+
 
     <!-- Language Options as String-Array -->
     <string-array name="language_options">

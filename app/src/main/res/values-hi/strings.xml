@@ -14,11 +14,11 @@
     <string name="reset">रीसेट करें</string>
 
     <!-- Language Options -->
-    <string name="english">अंग्रेज़ी</string>
+    <string name="english">English</string>
     <string name="hindi">हिन्दी</string>
-    <string name="tamil">तमिल</string>
-    <string name="telugu">तेलुगू</string>
-    <string name="malayalam">मलयालम</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="telugu">తెలుగు</string>
+    <string name="malayalam">മലയാളം</string>
 
     <!-- Motor Control -->
     <string name="motorcontrol">मोटर नियंत्रण</string>
@@ -34,9 +34,6 @@
     <string name="disconnect">डिस्कनेक्ट करें</string>
     <string name="emergency_stop">आपातकालीन रोक</string>
     <string name="presets">पूर्व निर्धारित स्थितियाँ</string>
-    <string name="open">खोलें</string>
-    <string name="close">बंद करें</string>
-    <string name="mid">मध्य</string>
     <string name="battery_level">बैटरी: %1$s</string>
     <string name="signal_strength">सिग्नल: %1$s</string>
     <string name="connecting">कनेक्ट हो रहा है...</string>
@@ -47,33 +44,6 @@
     <string name="actuation_type">सक्रियण प्रकार</string>
     <string name="select_actuation">सक्रियण प्रकार चुनें</string>
     <string name="current_delay">वर्तमान विलंब: %1$d ms</string>
-
-    <!-- Exercises -->
-    <string name="exercises_to_improve_control">नियंत्रण में सुधार के लिए अभ्यास</string>
-    <string name="exercise_info_title">नियंत्रण सुधार अभ्यास</string>
-    <string name="exercise_info_content">## बुनियादी अभ्यास\n\n
-1. **अलगाव अभ्यास**\n
-   - एक समय में एक उंगली को हिलाने पर ध्यान दें\n
-   - छोटे, नियंत्रित आंदोलनों का अभ्यास करें\n
-   - प्रत्येक उंगली के लिए 10 बार दोहराएं\n\n
-2. **ग्रिप प्रशिक्षण**\n
-   - अलग-अलग ग्रिप प्रकारों का अभ्यास करें:\n
-   - हल्की ग्रिप (कागज पकड़ना)\n
-   - मध्यम ग्रिप (पानी की बोतल)\n
-   - दृढ़ ग्रिप (स्ट्रेस बॉल)\n\n
-3. **सटीकता कार्य**\n
-   - छोटे वस्तुओं को उठाएं\n
-   - ब्लॉक स्टैक करें\n
-   - लिखने या ड्राइंग का अभ्यास करें\n\n
-## उन्नत अभ्यास\n\n
-1. **गति नियंत्रण**\n
-   - गति में बदलाव करें\n
-   - तेज और धीमी गति का अभ्यास करें\n
-   - चिकने संक्रमण पर ध्यान दें\n\n
-2. **समन्वय**\n
-   - संयुक्त आंदोलनों का अभ्यास करें\n
-   - प्राकृतिक हाथ की हरकतों की नकल करें\n
-   - दैनिक कार्यों का अभ्यास करें</string>
 
     <!-- Language Options as String-Array -->
     <string-array name="language_options">

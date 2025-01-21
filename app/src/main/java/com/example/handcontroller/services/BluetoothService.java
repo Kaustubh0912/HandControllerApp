@@ -230,7 +230,8 @@ public class BluetoothService extends Service {
     };
 
     private final BluetoothGattCallback gattCallback =
-        new BluetoothGattCallback() {
+        new BluetoothGattCallback()
+        {
             @Override
             public void onConnectionStateChange(
                 BluetoothGatt gatt,
@@ -275,14 +276,9 @@ public class BluetoothService extends Service {
         };
 
     private void enableCharacteristicNotification() {
-        if (
-            bluetoothGatt != null &&
-            ActivityCompat.checkSelfPermission(
-                this,
-                android.Manifest.permission.BLUETOOTH_CONNECT
-            ) ==
-            PackageManager.PERMISSION_GRANTED
-        ) {
+        if (bluetoothGatt != null &&
+            ActivityCompat.checkSelfPermission(this, android.Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED)
+        {
             BluetoothGattCharacteristic characteristic = bluetoothGatt
                 .getService(SERVICE_UUID)
                 .getCharacteristic(CHARACTERISTIC_UUID);
@@ -321,20 +317,6 @@ public class BluetoothService extends Service {
     // Status methods
     public boolean isConnected() {
         return connectionState == STATE_CONNECTED;
-    }
-
-    public BluetoothDevice getCurrentDevice() {
-        return bluetoothGatt != null ? bluetoothGatt.getDevice() : null;
-    }
-
-    // Data parsing
-    public double[] parseEMGData(byte[] data) {
-        double[] values = new double[2];
-        if (data != null && data.length >= 8) {
-            values[0] = (double) (((data[0] & 0xFF) << 8) | (data[1] & 0xFF));
-            values[1] = (double) (((data[2] & 0xFF) << 8) | (data[3] & 0xFF));
-        }
-        return values;
     }
 
     // Listener interfaces

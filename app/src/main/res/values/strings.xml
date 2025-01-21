@@ -15,10 +15,10 @@
 
     <!-- Language Options -->
     <string name="english">English</string>
-    <string name="hindi">Hindi</string>
-    <string name="tamil">Tamil</string>
-    <string name="telugu">Telugu</string>
-    <string name="malayalam">Malayalam</string>
+    <string name="hindi">हिन्दी</string>
+    <string name="tamil">தமிழ்</string>
+    <string name="telugu">తెలుగు</string>
+    <string name="malayalam">മലയാളം</string>
 
     <!-- Motor Control -->
     <string name="motorcontrol">Motor Control</string>
@@ -34,9 +34,9 @@
     <string name="disconnect">Disconnect</string>
     <string name="emergency_stop">EMERGENCY STOP</string>
     <string name="presets">Preset Positions</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="mid">Mid</string>
+    <string name="open" translatable="false">✋</string>
+    <string name="close" translatable="false">✊</string>
+    <string name="peace" translatable="false">✌️</string>
     <string name="battery_level">Battery: %1$s</string>
     <string name="signal_strength">Signal: %1$s</string>
     <string name="connecting">Connecting...</string>
@@ -48,32 +48,7 @@
     <string name="select_actuation">Select Actuation Type</string>
     <string name="current_delay">Current delay: %1$d ms</string>
 
-    <!-- Exercises -->
-    <string name="exercises_to_improve_control">Exercises to Improve Control</string>
-    <string name="exercise_info_title">Control Improvement Exercises</string>
-    <string name="exercise_info_content">## Basic Exercises\n\n
-1. **Isolation Exercise**\n
-   - Focus on moving one finger at a time\n
-   - Practice making small, controlled movements\n
-   - Repeat 10 times for each finger\n\n
-2. **Grip Training**\n
-   - Practice different grip types:\n
-   - Light grip (holding paper)\n
-   - Medium grip (water bottle)\n
-   - Firm grip (stress ball)\n\n
-3. **Precision Tasks**\n
-   - Pick up small objects\n
-   - Stack blocks\n
-   - Practice writing or drawing\n\n
-## Advanced Exercises\n\n
-1. **Speed Control**\n
-   - Vary movement speed\n
-   - Practice quick and slow movements\n
-   - Focus on smooth transitions\n\n
-2. **Coordination**\n
-   - Combined movements\n
-   - Mirror natural hand movements\n
-   - Practice daily tasks</string>
+
 
     <!-- Language Options as String-Array -->
     <string-array name="language_options">

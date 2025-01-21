@@ -89,7 +89,7 @@
                     android:textSize="16sp"
                     android:padding="12dp"
                     android:layout_marginBottom="24dp"
-                    app:backgroundTint="#CF6679"/>
+                    app:backgroundTint="#990000"/>
 
                 <!-- Motor 1 -->
                 <LinearLayout
@@ -232,17 +232,40 @@
                         android:layout_marginStart="8dp"
                         app:backgroundTint="#486581"/>
                 </LinearLayout>
-
-                <!-- Exercise Information Button -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/exerciseInfoButton"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/exercises_to_improve_control"
-                    android:textColor="#FFFFFF"
-                    app:backgroundTint="#486581"
-                    app:cornerRadius="8dp"
-                    android:layout_marginTop="24dp"/>
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/openHandButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/open"
+                        android:layout_marginEnd="4dp"
+                        app:backgroundTint="#486581"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/closeHandButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/close"
+                        android:layout_marginHorizontal="4dp"
+                        app:backgroundTint="#486581"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/peaceButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/peace"
+                        android:layout_marginStart="4dp"
+                        app:backgroundTint="#486581"/>
+                </LinearLayout>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

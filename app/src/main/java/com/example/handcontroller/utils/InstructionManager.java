@@ -1,7 +1,6 @@
 package com.example.handcontroller.utils;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.Log;
 
 import org.json.JSONArray;

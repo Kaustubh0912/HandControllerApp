@@ -8,8 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.util.Log;
-import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,14 +26,16 @@ public class ControlActivity extends AppCompatActivity {
     private TextView connectionStatusText;
     private MaterialButton saveButton;
     private MaterialButton resetButton;
-    private MaterialButton exerciseInfoButton;
     private MaterialButton emergencyStopButton;
-
+    private MaterialButton openHandButton;
+    private MaterialButton closeHandButton;
+    private MaterialButton peaceButton;
     // Constants
     private static final int NUM_MOTORS = 3;
     private static final int MAX_ANGLE = 180;
     private static final String PREFS_NAME = "MotorPrefs";
-
+    private static final int OPEN_POSITION = 0;
+    private static final int CLOSED_POSITION = 180;
     // Bluetooth Service
     private BluetoothService bluetoothService;
     private boolean serviceBound = false;
@@ -89,8 +89,10 @@ public class ControlActivity extends AppCompatActivity {
         connectionStatusText = findViewById(R.id.connectionStatus);
         saveButton = findViewById(R.id.saveButton);
         resetButton = findViewById(R.id.resetButton);
-        exerciseInfoButton = findViewById(R.id.exerciseInfoButton);
         emergencyStopButton = findViewById(R.id.emergencyStop);
+        openHandButton = findViewById(R.id.openHandButton);
+        closeHandButton = findViewById(R.id.closeHandButton);
+        peaceButton = findViewById(R.id.peaceButton);
 
         // Set max values for seek bars
         for (SeekBar seekBar : motorSeekBars) {
@@ -123,8 +125,10 @@ public class ControlActivity extends AppCompatActivity {
     private void setupButtons() {
         saveButton.setOnClickListener(v -> saveMotorPositions());
         resetButton.setOnClickListener(v -> resetMotorPositions());
-        exerciseInfoButton.setOnClickListener(v -> showExerciseInfo());
         emergencyStopButton.setOnClickListener(v -> handleEmergencyStop());
+        openHandButton.setOnClickListener(v -> setOpenHand());
+        closeHandButton.setOnClickListener(v -> setClosedHand());
+        peaceButton.setOnClickListener(v -> setPeaceSign());
     }
 
     private void setupBottomNavigation() {
@@ -185,9 +189,9 @@ public class ControlActivity extends AppCompatActivity {
 
     private void resetMotorPositions() {
         for (int i = 0; i < motorSeekBars.length; i++) {
-            motorSeekBars[i].setProgress(0);
-            updateMotorValue(i, 0);
-            sendMotorValueToHardware(i, 0);
+            motorSeekBars[i].setProgress(OPEN_POSITION);
+            updateMotorValue(i, OPEN_POSITION);
+            sendMotorValueToHardware(i, OPEN_POSITION);
         }
     }
 
@@ -199,14 +203,7 @@ public class ControlActivity extends AppCompatActivity {
         }
     }
 
-    private void showExerciseInfo() {
-        MarkdownDialog dialog = new MarkdownDialog(
-            this,
-            getString(R.string.exercise_info_title),
-            getString(R.string.exercise_info_content)
-        );
-        dialog.show();
-    }
+
 
     private void updateConnectionStatus() {
         if (bluetoothService != null && bluetoothService.isConnected()) {
@@ -221,9 +218,49 @@ public class ControlActivity extends AppCompatActivity {
     private boolean checkConnection() {
         if (bluetoothService == null || !bluetoothService.isConnected()) {
             showError("Please connect to device first");
-            return false;
+            return true;
         }
-        return true;
+        return false;
+    }
+    private void setOpenHand() {
+        if (checkConnection()) return;
+
+        // Set all motors to open position
+        for (int i = 0; i < NUM_MOTORS; i++) {
+            motorSeekBars[i].setProgress(OPEN_POSITION);
+            updateMotorValue(i, OPEN_POSITION);
+            sendMotorValueToHardware(i, OPEN_POSITION);
+        }
+    }
+
+    private void setClosedHand() {
+        if (checkConnection()) return;
+
+        // Set all motors to closed position
+        for (int i = 0; i < NUM_MOTORS; i++) {
+            motorSeekBars[i].setProgress(CLOSED_POSITION);
+            updateMotorValue(i, CLOSED_POSITION);
+            sendMotorValueToHardware(i, CLOSED_POSITION);
+        }
+    }
+
+    private void setPeaceSign() {
+        if (checkConnection()) return;
+
+        // Motor 1 (thumb) - closed
+        motorSeekBars[0].setProgress(CLOSED_POSITION);
+        updateMotorValue(0, CLOSED_POSITION);
+        sendMotorValueToHardware(0, CLOSED_POSITION);
+
+        // Motor 2 (index and middle) - open
+        motorSeekBars[1].setProgress(OPEN_POSITION);
+        updateMotorValue(1, OPEN_POSITION);
+        sendMotorValueToHardware(1, OPEN_POSITION);
+
+        // Motor 3 (ring and pinky) - closed
+        motorSeekBars[2].setProgress(CLOSED_POSITION);
+        updateMotorValue(2, CLOSED_POSITION);
+        sendMotorValueToHardware(2, CLOSED_POSITION);
     }
 
     private void showError(String message) {
